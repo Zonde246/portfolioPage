@@ -1,0 +1,515 @@
+/* ── INTRO HUD: OPERATIONS CENTER ─────────────────────────────────────── */
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background:
+    radial-gradient(ellipse at 50% 50%, #0a0a14 0%, #050508 60%, #020205 100%);
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  font-family: 'IBM Plex Mono', 'SF Mono', monospace;
+  color: #ededf0;
+  overflow: hidden;
+  will-change: opacity;
+}
+
+#intro-overlay.intro-gone { display: none; }
+
+/* Subtle grid backdrop */
+#intro-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(167, 139, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  opacity: 0;
+  animation: hud-grid-in 0.8s ease 0.1s forwards;
+}
+
+/* Vignette + scanlines */
+#intro-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(167, 139, 250, 0.025) 2px,
+      rgba(167, 139, 250, 0.025) 3px
+    );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+  animation: hud-fade-in 0.6s ease 0.4s forwards;
+}
+
+@keyframes hud-grid-in { to { opacity: 1; } }
+@keyframes hud-fade-in { to { opacity: 1; } }
+
+/* ── HUD frame container ──────────────────────────────────────────────── */
+
+.hud-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 18px 22px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  z-index: 2;
+}
+
+/* ── Header bar ───────────────────────────────────────────────────────── */
+
+.hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  background: rgba(12, 12, 16, 0.8);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: hud-slide-down 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+@keyframes hud-slide-down { to { opacity: 1; transform: translateY(0); } }
+
+.hud-header-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hud-header-tag {
+  color: #a78bfa;
+  font-weight: 500;
+}
+
+.hud-header-sep {
+  color: rgba(114, 114, 138, 0.4);
+}
+
+.hud-header-meta {
+  color: rgba(184, 184, 200, 0.6);
+  font-size: 9px;
+}
+
+.hud-header-right {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 9px;
+  color: rgba(184, 184, 200, 0.6);
+}
+
+.hud-rec-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  margin-right: 6px;
+  vertical-align: middle;
+  animation: hud-rec-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes hud-rec-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(239, 68, 68, 0.6); }
+  50%      { opacity: 0.4; box-shadow: 0 0 2px rgba(239, 68, 68, 0.3); }
+}
+
+/* ── Main grid: 5 panels ──────────────────────────────────────────────── */
+
+.hud-main {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  min-height: 0;
+}
+
+.hud-panel {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 12, 16, 0.65);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  animation: hud-panel-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hud-panel-radar    { grid-column: 1; grid-row: 1; animation-delay: 0.40s; }
+.hud-panel-recon    { grid-column: 2; grid-row: 1 / 3; animation-delay: 0.55s; }
+.hud-panel-sigint   { grid-column: 3; grid-row: 1; animation-delay: 0.50s; }
+.hud-panel-threat   { grid-column: 1; grid-row: 2; animation-delay: 0.65s; }
+.hud-panel-syslog   { grid-column: 3; grid-row: 2; animation-delay: 0.70s; }
+
+@keyframes hud-panel-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Panel corner brackets */
+.hud-panel::before,
+.hud-panel::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(167, 139, 250, 0.55);
+  border-style: solid;
+  pointer-events: none;
+}
+.hud-panel::before { top: -1px; left: -1px;  border-width: 1px 0 0 1px; }
+.hud-panel::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+/* Panel label */
+.hud-panel-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(167, 139, 250, 0.85);
+  flex-shrink: 0;
+}
+
+.hud-panel-label-meta {
+  color: rgba(114, 114, 138, 0.7);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.hud-panel-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.hud-panel-body canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── SIGINT decoder list ──────────────────────────────────────────────── */
+
+.hud-sigint-list {
+  position: absolute;
+  inset: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 9px;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+}
+
+.hud-sigint-row {
+  display: grid;
+  grid-template-columns: 1fr 12px 1fr;
+  gap: 6px;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hud-sigint-row.is-shown {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hud-sigint-bin {
+  color: rgba(124, 58, 237, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hud-sigint-arrow {
+  color: rgba(114, 114, 138, 0.5);
+  text-align: center;
+}
+
+.hud-sigint-text {
+  color: #ededf0;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hud-sigint-row.is-decoded .hud-sigint-text {
+  color: #c4b5fd;
+}
+
+/* ── System log ───────────────────────────────────────────────────────── */
+
+.hud-syslog {
+  position: absolute;
+  inset: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-syslog-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px;
+  opacity: 0;
+  transform: translateX(5px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hud-syslog-row.is-shown {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hud-syslog-time {
+  color: rgba(114, 114, 138, 0.6);
+}
+
+.hud-syslog-msg {
+  color: rgba(184, 184, 200, 0.85);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hud-syslog-status {
+  color: #2dd4bf;
+  font-weight: 500;
+}
+
+.hud-syslog-row.is-warn .hud-syslog-status { color: #fbbf24; }
+.hud-syslog-row.is-final .hud-syslog-msg   { color: #c4b5fd; font-weight: 500; }
+.hud-syslog-row.is-final .hud-syslog-status { color: #2dd4bf; }
+
+/* ── Footer bar ───────────────────────────────────────────────────────── */
+
+.hud-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  background: rgba(12, 12, 16, 0.8);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(184, 184, 200, 0.7);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: hud-slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+@keyframes hud-slide-up { to { opacity: 1; transform: translateY(0); } }
+
+.hud-footer-clearance { color: #a78bfa; }
+
+.hud-footer-status {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hud-footer-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.6);
+  animation: hud-status-pulse 1.2s ease-in-out infinite;
+}
+
+.hud-footer-status.is-locked .hud-footer-status-dot {
+  background: #2dd4bf;
+  box-shadow: 0 0 8px rgba(45, 212, 191, 0.7);
+  animation: none;
+}
+
+.hud-footer-status.is-locked .hud-footer-status-text {
+  color: #2dd4bf;
+}
+
+@keyframes hud-status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Crosshair overlay (final lock) ───────────────────────────────────── */
+
+.hud-crosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 3;
+}
+
+.hud-crosshair.is-active {
+  animation: hud-crosshair-in 0.4s ease forwards;
+}
+
+@keyframes hud-crosshair-in { to { opacity: 1; } }
+
+.hud-crosshair-line {
+  position: absolute;
+  background: rgba(196, 181, 253, 0.7);
+  box-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
+}
+
+.hud-crosshair-line.h {
+  left: 0; right: 0; height: 1px;
+  top: 50%;
+}
+.hud-crosshair-line.v {
+  top: 0; bottom: 0; width: 1px;
+  left: 50%;
+}
+
+/* Reticle ring around recon panel center */
+.hud-crosshair-reticle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -40px;
+  border: 1.5px solid rgba(196, 181, 253, 0.8);
+  border-radius: 50%;
+  box-shadow:
+    0 0 14px rgba(167, 139, 250, 0.5),
+    inset 0 0 14px rgba(167, 139, 250, 0.25);
+  opacity: 0;
+}
+
+.hud-crosshair.is-active .hud-crosshair-reticle {
+  animation: hud-reticle-lock 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+@keyframes hud-reticle-lock {
+  0%   { opacity: 0; transform: scale(2.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Exit: zoom-into-center reveal ────────────────────────────────────── */
+
+#intro-overlay.intro-exiting .hud-frame {
+  animation: hud-zoom-out 0.85s cubic-bezier(0.55, 0, 0.85, 0.4) forwards;
+}
+
+#intro-overlay.intro-exiting {
+  animation: hud-fade-out 0.55s ease 0.45s forwards;
+}
+
+@keyframes hud-zoom-out {
+  0%   { transform: scale(1); filter: blur(0); opacity: 1; }
+  100% { transform: scale(2.4); filter: blur(8px); opacity: 0; }
+}
+
+@keyframes hud-fade-out { to { opacity: 0; } }
+
+/* ── Skip button ─────────────────────────────────────────────────────── */
+
+.intro-skip {
+  position: fixed;
+  bottom: 14px;
+  right: 18px;
+  z-index: 4;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(114, 114, 138, 0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  transition: color 0.2s ease;
+  opacity: 0;
+  animation: hud-fade-in 0.4s ease 0.9s forwards;
+}
+
+.intro-skip:hover { color: rgba(167, 139, 250, 0.9); }
+
+/* ── Reduced motion ───────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  #intro-overlay::before,
+  #intro-overlay::after,
+  .hud-header,
+  .hud-footer,
+  .hud-panel,
+  .intro-skip {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hud-rec-dot,
+  .hud-footer-status-dot {
+    animation: none !important;
+  }
+
+  #intro-overlay.intro-exiting {
+    animation: hud-fade-out 0.3s ease forwards !important;
+  }
+
+  #intro-overlay.intro-exiting .hud-frame {
+    animation: none !important;
+  }
+}
+
+/* ── Responsive (tablet & phone) ─────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .hud-main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .hud-panel-radar    { grid-column: 1; grid-row: 1; }
+  .hud-panel-recon    { grid-column: 1 / 3; grid-row: 2; min-height: 220px; }
+  .hud-panel-sigint   { grid-column: 2; grid-row: 1; }
+  .hud-panel-threat   { grid-column: 1; grid-row: 3; }
+  .hud-panel-syslog   { grid-column: 2; grid-row: 3; }
+
+  .hud-header { font-size: 9px; padding: 6px 10px; }
+  .hud-header-meta, .hud-header-right { display: none; }
+
+  .hud-footer { font-size: 8px; padding: 6px 10px; }
+
+  .hud-frame { padding: 12px; gap: 8px; }
+  .hud-main { gap: 8px; }
+}
+
+@media (max-height: 560px) {
+  .hud-panel-label { padding: 4px 8px; font-size: 8px; }
+}

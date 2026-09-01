@@ -19,8 +19,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
+
+  <!-- Shared base styles -->
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/cursor.css" />
+  <link rel="stylesheet" href="styles/ambient.css" />
+
+  <!-- War room (desktop) -->
+  <link rel="stylesheet" href="styles/warroom.css" />
+
+  <!-- Legacy page (mobile) — only paint-relevant when #legacy is visible -->
   <link rel="stylesheet" href="styles/nav.css" />
   <link rel="stylesheet" href="styles/hero.css" />
   <link rel="stylesheet" href="styles/terminal.css" />
@@ -33,733 +41,936 @@
   <link rel="stylesheet" href="styles/delights.css" />
   <link rel="stylesheet" href="styles/graph.css" />
   <link rel="stylesheet" href="styles/off-clock.css" />
-  <link rel="stylesheet" href="styles/ambient.css" />
   <link rel="stylesheet" href="styles/radar.css" />
   <link rel="stylesheet" href="styles/radar-crt.css" />
   <link rel="stylesheet" href="styles/view-transitions.css" />
   <link rel="stylesheet" href="styles/boot.css" />
+  <link rel="stylesheet" href="styles/intro.css" />
 </head>
 
 <body>
 
-  <nav>
-    <a href="#" class="nav-logo" aria-label="Parikshieth Harish">PH</a>
-    <ul class="nav-links">
-      <li><a href="#projects">01 Work</a></li>
-      <li><a href="#skills">02 Capabilities</a></li>
-      <li><a href="#background">03 Background</a></li>
-      <li><a href="#off-clock">04 Off-Clock</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="mailto:parikshieth@gmail.com" class="nav-contact">Contact</a>
-    </div>
-    <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
-      <span class="hamburger-icon"></span>
-    </button>
-  </nav>
-
-  <div id="mobile-drawer-scrim" class="mobile-drawer-scrim" aria-hidden="true"></div>
-  <div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation">
-    <div class="drawer-header">
-      <span class="drawer-header-label">Navigation</span>
-      <button class="drawer-close" id="drawer-close" aria-label="Close menu">
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <line x1="1" y1="1" x2="11" y2="11" />
-          <line x1="11" y1="1" x2="1" y2="11" />
-        </svg>
-      </button>
-    </div>
-    <nav class="drawer-nav">
-      <a href="#projects"><span class="drawer-num">01</span><span class="drawer-label">Work</span></a>
-      <a href="#skills"><span class="drawer-num">02</span><span class="drawer-label">Capabilities</span></a>
-      <a href="#background"><span class="drawer-num">03</span><span class="drawer-label">Background</span></a>
-      <a href="#off-clock"><span class="drawer-num">04</span><span class="drawer-label">Off-Clock</span></a>
-    </nav>
-    <div class="drawer-footer">
-      <a href="mailto:parikshieth@gmail.com" class="drawer-cta">Contact</a>
-    </div>
-  </div>
-
-  <!-- ─── MAIN CONTENT ─── -->
-  <main>
-
-    <!-- ─── HERO ─── -->
-    <section class="hero">
-      <div class="hero-voxel-bg" aria-hidden="true"><canvas id="voxel-canvas"></canvas></div>
-      <div class="hero-inner">
-
-        <p class="hero-eyebrow">Computer Vision &amp; Cybersecurity Researcher</p>
-
-        <h1 class="hero-name">Parikshieth Harish</h1>
-
-        <p class="hero-impact">Built a 3D-CNN EDR achieving 88% accuracy on unseen malware families. Sole architect,
-          from research hypothesis to paper under review.</p>
-
-        <div class="hero-abstract">
-          <span class="abstract-marker">FIELD NOTES</span>
-          <p class="abstract-body">
-            I've been fascinated by cybersecurity since before I knew what to call it. I was the kid picking apart
-            systems just to see how they worked, running Linux in high school while everyone else was on Windows. CV
-            came later, through a professor who taught it like it was the most important field in the world. Turns out,
-            he wasn't wrong. The two clicked for me: if you understand how systems break, you build smarter ones.
-            That overlap is where I work.
-          </p>
-        </div>
-
-        <div class="hero-bottom-row">
-          <div class="hero-socials">
-            <a href="tel:+919962595200" class="hero-social" aria-label="Call +91 99625 95200">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path
-                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.01 1.21 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
-              </svg>
-            </a>
-            <a href="mailto:parikshieth@gmail.com" class="hero-social" aria-label="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/parikshieth-harish-10481528b/" class="hero-social"
-              aria-label="LinkedIn" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
-            </a>
-            <a href="https://github.com/zParik" class="hero-social" aria-label="GitHub" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-              </svg>
-            </a>
-            <span class="hero-social hero-social-location" aria-label="Vellore, Tamil Nadu, India"
-              title="Vellore, Tamil Nadu, India">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </span>
-            <a href="https://1drv.ms/b/c/fcf757163cbff0d2/IQC56Ct6p0eYTZfb3iE5gT8cAQkY27lT1igtL0brLFxTZVY?e=ljB9ec" class="hero-social hero-social-resume" aria-label="Download Resume" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                <polyline points="14,2 14,8 20,8" />
-                <line x1="12" y1="11" x2="12" y2="17" />
-                <polyline points="9,14 12,17 15,14" />
-              </svg>
-            </a>
-          </div>
-
-          <div class="hero-actions">
-            <a href="#projects" class="btn-primary">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M12 5v14M5 12l7 7 7-7" />
-              </svg>
-              View Research
-            </a>
-            <a href="mailto:parikshieth@gmail.com" class="btn-secondary">Get in Touch</a>
-          </div>
-        </div>
-
-        <div class="hero-manifest">
-          <div class="manifest-rule"></div>
-          <div class="manifest-grid">
-            <div class="manifest-col">
-              <span class="manifest-key">Domain</span>
-              <span class="manifest-val">Computer Vision<br>Cybersecurity</span>
-            </div>
-            <div class="manifest-col">
-              <span class="manifest-key">Affiliation</span>
-              <span class="manifest-val"><strong>VIT</strong> Vellore<br>Bachelor of Computer Applications · 2026</span>
-            </div>
-            <div class="manifest-col">
-              <span class="manifest-key">Status</span>
-              <span class="manifest-val">
-                <span class="manifest-status-live">
-                  <span class="manifest-status-dot"></span>
-                  Open for<br>Collaboration
-                </span>
-              </span>
-            </div>
-            <div class="manifest-col">
-              <span class="manifest-key">Classification</span>
-              <span class="manifest-val"><span class="manifest-classify">Open Research</span></span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ─── PROJECTS ─── -->
-    <div id="projects">
-      <div class="section-shell">
-        <div class="section-rule reveal"></div>
-        <div class="section-header reveal">
-          <span class="section-num">01</span>
-          <h2 class="section-title">Research &amp; Projects</h2>
-        </div>
-
-        <div class="projects-index">
-
-          <!-- ─── RADAR SECTION (hidden until shatter) ─── -->
-          <div class="radar-section" id="radar-section" hidden>
-            <div class="radar-wrap">
-              <div class="radar-canvas-wrap">
-                <img class="ouroboros-ring" id="ouroboros-ring" src="drawing.svg" aria-hidden="true" alt="">
-                <canvas id="intel-radar"
-                  aria-label="Intel radar: 16 classified projects. Use arrow keys to navigate, Enter to open dossier."></canvas>
-              </div>
-            </div>
-
-            <div class="radar-legend">
-              <span class="rl-item"><span class="rl-dot" style="background:#2dd4bf"></span>Security</span>
-              <span class="rl-item"><span class="rl-dot" style="background:#60a5fa"></span>Accessibility</span>
-              <span class="rl-item"><span class="rl-dot" style="background:#fbbf24"></span>Hackathon</span>
-              <span class="rl-item"><span class="rl-dot" style="background:#a78bfa"></span>Systems</span>
-              <span class="rl-item rl-item--active"><span class="rl-dot rl-dot--active"></span>Active Research</span>
-            </div>
-
-            <p class="radar-instruction" id="radar-instruction">
-              <span class="ri-tag">[SYS]</span>
-              <span class="ri-label">SIGNAL INTERACTION PROTOCOL</span>
-              <span class="ri-sep">—</span>
-              <span class="ri-cmd">CLICK</span> select signal
-              <span class="ri-sep">·</span>
-              <span class="ri-cmd">↑↓</span> navigate
-              <span class="ri-sep">·</span>
-              <span class="ri-cmd">ENTER</span> open dossier
-            </p>
-
-            <button class="radar-back-btn" id="radar-back-btn" aria-label="Return to project list">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                aria-hidden="true">
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-              [ RE-ENGAGE PERCEPTION FILTERS ]
-            </button>
-          </div><!-- /radar-section -->
-
-          <!-- ─── MANIFEST SECTION ─── -->
-          <div class="manifest-section" id="manifest-section">
-
-            <!-- ─── MANIFEST HEADER ─── -->
-            <div class="manifest-header reveal">
-              <div class="manifest-header-left">
-                <span class="manifest-header-label">All Files</span>
-                <span class="manifest-header-count">×&thinsp;14</span>
-              </div>
-              <div class="manifest-col-labels">
-                <span>Codename</span>
-                <span>Domain</span>
-                <span>Key Metric</span>
-                <span>Status</span>
-              </div>
-            </div>
-
-            <!-- ─── MANIFEST LIST ─── -->
-            <div class="manifest-list" id="manifest-list"></div>
-
-            <!-- ─── EARLIER WORK TOGGLE ─── -->
-            <button class="earlier-work-toggle manifest-earlier-toggle" id="earlier-work-toggle" aria-expanded="false"
-              aria-controls="earlier-work-rows">
-              <span class="ewt-static">
-                <svg class="manifest-expand-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-                <span class="earlier-work-toggle-text">Show Earlier Work</span>
-                <span class="manifest-expand-count">2 projects</span>
-              </span>
-              <span class="ewt-progress-wrap" aria-hidden="true">
-                <span class="ewt-status" id="ewt-status">INITIATING DECRYPTION...</span>
-                <span class="ewt-bar-row">
-                  <span class="ewt-bar-label-l">ACCESS [</span>
-                  <span class="ewt-bar" id="ewt-bar"></span>
-                  <span class="ewt-bar-label-r">]</span>
-                  <span class="ewt-pct" id="ewt-pct">0%</span>
-                </span>
-              </span>
-            </button>
-
-            <!-- ─── EARLIER WORK ROWS ─── -->
-            <div id="earlier-work-rows" class="earlier-work-rows" hidden>
-              <div class="manifest-list manifest-list--muted" id="earlier-work-list"></div>
-            </div><!-- /earlier-work-rows -->
-
-            <div class="radar-reveal-row">
-              <div class="radar-teaser" aria-hidden="true">
-                <canvas class="radar-teaser-canvas" id="radar-teaser-canvas" width="72" height="72"></canvas>
-                <span class="radar-teaser-label">16 signals detected</span>
-              </div>
-
-              <button class="radar-reveal-btn" id="radar-reveal-btn">
-                <span class="rrb-text">[ OVERRIDE COGNITOHAZARD FILTERS ]</span>
-                <svg class="rrb-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2.5" aria-hidden="true">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                </svg>
-              </button>
-            </div>
-
-          </div><!-- /manifest-section -->
-
-        </div><!-- /projects-index -->
-      </div>
-    </div>
-
-    <!-- ─── CAPABILITIES ─── -->
-    <div id="skills">
-      <div class="section-shell">
-        <div class="section-rule reveal"></div>
-        <div class="section-header reveal">
-          <span class="section-num">02</span>
-          <h2 class="section-title">Technical Capabilities</h2>
-        </div>
-
-        <!-- CAPABILITY GRAPH — macro view, moved into section 02 -->
-        <div class="graph-section reveal" aria-label="Capability graph">
-          <div class="threat-map-wrap">
-            <canvas id="threat-map"></canvas>
-            <div class="threat-map-hud">
-              <span class="threat-map-label">CAPABILITY GRAPH // INTERDISCIPLINARY NETWORK</span>
-              <span class="threat-map-stat" id="threat-arc-count">LINKS: --</span>
-              <span class="threat-map-stat" id="threat-node-count">DOMAINS: --</span>
-              <span class="threat-map-stat threat-map-stat--live"><span class="threat-blink"></span>LIVE FEED</span>
-            </div>
-            <div class="threat-map-legend">
-              <span class="threat-legend-item threat-legend-item--cv">Computer Vision &amp; ML</span>
-              <span class="threat-legend-item threat-legend-item--sec">Security &amp; Cryptography</span>
-              <span class="threat-legend-item threat-legend-item--sys">Systems &amp; Backend</span>
-            </div>
-          </div>
-
-          <!-- Mobile fallback: DOM node list shown when canvas labels are hidden -->
-          <div class="graph-mobile-list" aria-label="Capability domains">
-            <div class="graph-mobile-you">
-              <span class="graph-mobile-node graph-mobile-node--me">⬤ Parikshieth — Researcher</span>
-            </div>
-            <div class="graph-mobile-group">
-              <span class="graph-mobile-group-label graph-mobile-group-label--cv">Computer Vision &amp; ML</span>
-              <div class="graph-mobile-nodes">
-                <span class="graph-mobile-node graph-mobile-node--cv graph-mobile-node--primary">Computer Vision</span>
-                <span class="graph-mobile-node graph-mobile-node--cv graph-mobile-node--primary">Deep Learning</span>
-                <span class="graph-mobile-node graph-mobile-node--cv">Assistive AI</span>
-                <span class="graph-mobile-node graph-mobile-node--cv">ML Research</span>
-              </div>
-            </div>
-            <div class="graph-mobile-group">
-              <span class="graph-mobile-group-label graph-mobile-group-label--sec">Security &amp; Cryptography</span>
-              <div class="graph-mobile-nodes">
-                <span class="graph-mobile-node graph-mobile-node--sec graph-mobile-node--primary">Endpoint Security</span>
-                <span class="graph-mobile-node graph-mobile-node--sec graph-mobile-node--primary">Cryptography</span>
-                <span class="graph-mobile-node graph-mobile-node--sec">Malware Analysis</span>
-              </div>
-            </div>
-            <div class="graph-mobile-group">
-              <span class="graph-mobile-group-label graph-mobile-group-label--sys">Systems &amp; Backend</span>
-              <div class="graph-mobile-nodes">
-                <span class="graph-mobile-node graph-mobile-node--sys graph-mobile-node--primary">Systems / C++</span>
-                <span class="graph-mobile-node graph-mobile-node--sys graph-mobile-node--primary">Networking</span>
-                <span class="graph-mobile-node graph-mobile-node--sys">Backend / Data</span>
-                <span class="graph-mobile-node graph-mobile-node--sys">Frontend / Mobile</span>
-                <span class="graph-mobile-node graph-mobile-node--sys">Databases</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- connector: graph (macro) → inventory (micro) -->
-        <div class="cap-bridge reveal" aria-hidden="true">
-          <span class="cap-bridge-line"></span>
-          <span class="cap-bridge-label">INVENTORY</span>
-          <span class="cap-bridge-line"></span>
-        </div>
-
-        <div class="spec-grid reveal">
-
-          <div class="spec-cell spec-cell--primary" data-domain="cv">
-            <div class="spec-cell-header">
-              <span class="spec-cell-domain">Computer Vision</span>
-              <span class="spec-cell-depth primary">Primary</span>
-            </div>
-            <div class="spec-cell-tools">
-              <span class="spec-tag">PyTorch</span><span class="spec-tag">YOLOv8</span><span
-                class="spec-tag">MediaPipe</span><span class="spec-tag">3D-CNN</span><span
-                class="spec-tag">OpenCV</span>
-            </div>
-          </div>
-
-          <div class="spec-cell spec-cell--primary" data-domain="sec">
-            <div class="spec-cell-header">
-              <span class="spec-cell-domain">Security &amp; Cryptography</span>
-              <span class="spec-cell-depth primary">Primary</span>
-            </div>
-            <div class="spec-cell-tools">
-              <span class="spec-tag">RSA Blind Signatures</span><span class="spec-tag">AES-GCM</span><span
-                class="spec-tag">ECDH</span><span class="spec-tag">EDR</span><span class="spec-tag">ONNX</span>
-            </div>
-          </div>
-
-          <div class="spec-cell spec-cell--proficient" data-domain="sys">
-            <div class="spec-cell-header">
-              <span class="spec-cell-domain">Systems</span>
-              <span class="spec-cell-depth proficient">Proficient</span>
-            </div>
-            <div class="spec-cell-tools">
-              <span class="spec-tag">C / C++</span><span class="spec-tag arch-span"
-                title="I use Arch btw">Linux</span><span class="spec-tag">Networking</span><span
-                class="spec-tag">Cisco</span><span class="spec-tag">IPC</span><span class="spec-tag">DSA</span>
-            </div>
-          </div>
-
-          <div class="spec-cell spec-cell--proficient" data-domain="sys">
-            <div class="spec-cell-header">
-              <span class="spec-cell-domain">Backend &amp; Data</span>
-              <span class="spec-cell-depth proficient">Proficient</span>
-            </div>
-            <div class="spec-cell-tools">
-              <span class="spec-tag">Python</span><span class="spec-tag">Flask</span><span
-                class="spec-tag">Node.js</span><span class="spec-tag">Express</span><span
-                class="spec-tag">Django</span><span class="spec-tag">PHP</span><span class="spec-tag">Grafana</span>
-            </div>
-          </div>
-
-          <div class="spec-cell spec-cell--applied" data-domain="sys">
-            <div class="spec-cell-header">
-              <span class="spec-cell-domain">Frontend</span>
-              <span class="spec-cell-depth applied">Applied</span>
-            </div>
-            <div class="spec-cell-tools">
-              <span class="spec-tag">ReactJS</span><span class="spec-tag">Next.js</span><span
-                class="spec-tag">Flutter</span><span class="spec-tag">Dart</span><span class="spec-tag">Vanilla
-                JS</span>
-            </div>
-          </div>
-
-          <div class="spec-cell spec-cell--applied" data-domain="sys">
-            <div class="spec-cell-header">
-              <span class="spec-cell-domain">Databases</span>
-              <span class="spec-cell-depth applied">Applied</span>
-            </div>
-            <div class="spec-cell-tools">
-              <span class="spec-tag">PostgreSQL</span><span class="spec-tag">MySQL</span><span
-                class="spec-tag">MongoDB</span><span class="spec-tag">InfluxDB</span><span
-                class="spec-tag">SQLite</span><span class="spec-tag">Supabase</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- HUMINT: Soft skills + Languages as dossier attributes -->
-        <div class="humint-block reveal">
-          <div class="humint-header">
-            <span class="humint-label">HUMINT</span>
-            <span class="humint-sub">Human Intelligence Profile</span>
-          </div>
-          <div class="humint-body">
-            <div class="humint-col">
-              <span class="humint-col-key">Operational Traits</span>
-              <div class="humint-traits">
-                <span class="humint-trait">Communication</span>
-                <span class="humint-trait">Critical Thinking</span>
-                <span class="humint-trait">Teamwork</span>
-                <span class="humint-trait">Leadership</span>
-                <span class="humint-trait">Problem Solving</span>
-                <span class="humint-trait">Adaptability</span>
-              </div>
-            </div>
-            <div class="humint-divider" aria-hidden="true"></div>
-            <div class="humint-col humint-col--langs">
-              <span class="humint-col-key">Linguistic Clearance</span>
-              <div class="humint-langs">
-                <span class="humint-lang"><span class="humint-lang-dot"></span>Tamil<span
-                    class="humint-lang-level">Native</span></span>
-                <span class="humint-lang"><span class="humint-lang-dot"></span>English<span
-                    class="humint-lang-level">Fluent</span></span>
-                <span class="humint-lang"><span class="humint-lang-dot"></span>German<span
-                    class="humint-lang-level">A2</span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── BACKGROUND ─── -->
-    <div id="background">
-      <div class="section-shell">
-        <div class="section-rule reveal"></div>
-        <div class="section-header reveal">
-          <span class="section-num">03</span>
-          <h2 class="section-title">Background</h2>
-        </div>
-
-        <div class="bg-layout">
-
-          <div class="edu-row reveal">
-            <div class="edu-abbr" aria-hidden="true">VIT</div>
-            <div>
-              <!-- <p class="edu-degree">BCA (Hons), Bachelor of Computer Applications</p> -->
-              <p class="edu-degree">BCA, Bachelor of Computer Applications</p>
-              <p class="edu-institution">Vellore Institute of Technology</p>
-              <p class="edu-year">Expected 2026</p>
-              <div class="edu-badges">
-                <a class="edu-badge edu-badge--link"
-                  href="https://1drv.ms/b/c/fcf757163cbff0d2/IQAizzWX_Os3Sr_MhwTHaeryAeJtOsnAUsyeTudTx3EEWMQ"
-                  target="_blank" rel="noopener" aria-label="Merit Scholarship certificate, Year 1">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polygon
-                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                  <span class="edu-badge-label">CGPA</span><span class="edu-badge-sep">·</span><span
-                    class="edu-badge-val">Top 10 &middot; Y1</span>
-                </a>
-                <a class="edu-badge edu-badge--link"
-                  href="https://1drv.ms/b/c/fcf757163cbff0d2/IQCYRTF4ok3bS5HzD2TnhOxdAURmlqq3sK0ngRTePWhnjmY?e=5Pk8nL"
-                  target="_blank" rel="noopener" aria-label="Merit Scholarship certificate, Year 2">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polygon
-                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                  <span class="edu-badge-label">CGPA</span><span class="edu-badge-sep">·</span><span
-                    class="edu-badge-val">Top 10 &middot; Y2</span>
-                </a>
-                <a class="edu-badge edu-badge--link"
-                  href="https://1drv.ms/b/c/fcf757163cbff0d2/IQB9AE8Rb7i3Rq62VOpUF4peAb4SHAE2IiF_Qf9-KZLMfMQ?e=2DA2ri"
-                  target="_blank" rel="noopener" aria-label="Merit Scholarship certificate, Year 3">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polygon
-                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                  <span class="edu-badge-label">CGPA</span><span class="edu-badge-sep">·</span><span
-                    class="edu-badge-val">Top 10 &middot; Y3 - CGPA 9.3</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="reveal">
-            <p class="certs-sub-label">Certifications</p>
-            <div class="certs-list">
-              <a class="cert-item" href="https://coursera.org/share/7b024f7bf9574fab1fecc731b259591c" target="_blank"
-                rel="noopener">
-                <span class="cert-item-name">IBM Cybersecurity Analyst</span>
-                <span class="cert-item-meta">9-course · IBM</span>
-              </a>
-              <a class="cert-item" href="https://coursera.org/share/37feb7ab579c73ec4240aa38eb3e34eb" target="_blank"
-                rel="noopener">
-                <span class="cert-item-name">AWS Cloud Technical Essentials</span>
-                <span class="cert-item-meta">AWS</span>
-              </a>
-              <a class="cert-item" href="https://www.udemy.com/certificate/UC-5e650896-ec1e-4ee8-bb94-787b11165c5e/"
-                target="_blank" rel="noopener">
-                <span class="cert-item-name">The Complete JavaScript Course 2023</span>
-                <span class="cert-item-meta">Jonas Schmedtmann · Udemy</span>
-              </a>
-              <a class="cert-item" href="https://www.udemy.com/certificate/UC-20a1f4d4-5068-48a7-88b1-2d99c8b789c3/"
-                target="_blank" rel="noopener">
-                <span class="cert-item-name">Next.js &amp; React - The Complete Guide</span>
-                <span class="cert-item-meta">Maximilian Schwarzmüller · Udemy</span>
-              </a>
-              <a class="cert-item" href="https://www.udemy.com/certificate/UC-cdfa5287-e586-45a3-99c2-64701d0ccbd6/"
-                target="_blank" rel="noopener">
-                <span class="cert-item-name">React, NodeJS, Express &amp; MongoDB - The MERN Fullstack Guide</span>
-                <span class="cert-item-meta">Academind · Udemy</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ─── OFF-CLOCK ─── -->
-    <div id="off-clock">
-      <div class="section-shell">
-        <div class="section-rule reveal"></div>
-        <div class="section-header reveal">
-          <span class="section-num">04</span>
-          <h2 class="section-title">Off-Clock</h2>
-        </div>
-
-        <div class="offclock-body reveal">
-          <div class="offclock-wrap">
-            <div class="offclock-bg-stamp" aria-hidden="true">UNCLASSIFIED</div>
-            <div class="offclock-grid">
-
-              <div class="offclock-item">
-                <div class="offclock-item-inner">
-                  <span class="offclock-key">ARCHIVES</span>
-                  <span class="offclock-val">Sci-Fi, conspiracy thrillers, and deep lore. Star Wars &amp; Dan
-                    Brown.</span>
-                  <span class="offclock-sub">// currently: re-reading Angels &amp; Demons</span>
-                </div>
-              </div>
-
-              <div class="offclock-item">
-                <div class="offclock-item-inner">
-                  <span class="offclock-key">GAMES</span>
-                  <span class="offclock-val">Age of Empires &middot; Retro NES &middot; Hollow Knight &middot; Apex
-                    &middot; Ultrakill</span>
-                  <span class="offclock-sub">// currently: dying repeatedly in Ultrakill</span>
-                </div>
-              </div>
-
-              <div class="offclock-item">
-                <div class="offclock-item-inner">
-                  <span class="offclock-key">LINUX</span>
-                  <span class="offclock-val">Ricing, window managers, dotfiles. Always a work in progress.</span>
-                  <span class="offclock-sub">// yes, Arch btw</span>
-                </div>
-              </div>
-
-              <div class="offclock-item">
-                <div class="offclock-item-inner">
-                  <span class="offclock-key">WRITING</span>
-                  <span class="offclock-val">Short fiction. Usually dark. Rarely finished.</span>
-                  <span class="offclock-sub">// SCP-style is a personal favourite</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="offclock-terminal">
-            <p class="terminal-section-label">Active Sessions</p>
-            <div class="terminal" id="terminal">
-              <div class="terminal-bar">
-                <span class="terminal-dot red"></span>
-                <span class="terminal-dot amber"></span>
-                <span class="terminal-dot green"></span>
-                <span class="terminal-title">parikshieth: zsh</span>
-              </div>
-              <div class="terminal-body" id="terminal-body">
-                <span class="t-cursor"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <span class="footer-classified" aria-hidden="true">CLASSIFIED</span>
-    <div class="footer-left">
-      <a href="mailto:parikshieth@gmail.com">parikshieth@gmail.com</a>
-      &nbsp;&mdash;&nbsp;
-      <a href="tel:+919962595200">+91 99625 95200</a>
-    </div>
-
-    <div class="footer-right">&copy; <span id="footer-year"></span> Parikshieth Harish</div>
-  </footer>
-
-  <!-- ─── DOSSIER OVERLAY ─── -->
-  <div id="radar-tooltip" class="radar-tooltip" hidden></div>
-
-  <div id="dossier-overlay" class="dossier-overlay" role="dialog" aria-modal="true" aria-labelledby="dossier-name">
-    <div id="dossier-panel" class="dossier-panel">
-      <div class="dossier-drag-handle" aria-hidden="true"></div>
-      <div class="dossier-folder-tab">
-        <span class="dossier-folder-label">CLASSIFIED FILE</span>
-        <span id="dossier-tab-name" class="dossier-folder-name"></span>
-      </div>
-      <div class="dossier-inner">
-        <div class="dossier-header">
-          <div class="dossier-stamps">
-            <span id="dossier-stamp" class="dossier-stamp">CLEARANCE: ACTIVE</span>
-            <span id="dossier-status-badge" class="dossier-status-badge"></span>
-          </div>
-          <button id="dossier-close" class="dossier-close" aria-label="Close dossier">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-            CLOSE FILE
-          </button>
-        </div>
-        <div class="dossier-title-block">
-          <p id="dossier-badge" class="dossier-badge-label"></p>
-          <h2 id="dossier-name" class="dossier-name"></h2>
-          <div class="dossier-meta-row">
-            <span class="dossier-meta-key">OPERATOR</span>
-            <span id="dossier-role" class="dossier-meta-val"></span>
-            <span class="dossier-separator">|</span>
-            <span class="dossier-meta-key">STATUS</span>
-            <span id="dossier-status-text" class="dossier-meta-val"></span>
-          </div>
-        </div>
-        <div class="dossier-redact-bar"></div>
-        <div id="dossier-metrics-strip" class="dossier-metrics-strip"></div>
-        <div class="dossier-section">
-          <p class="dossier-section-label">// Overview</p>
-          <p id="dossier-overview" class="dossier-section-body redacted"></p>
-        </div>
-        <div class="dossier-section">
-          <p class="dossier-section-label">// Architecture</p>
-          <p id="dossier-architecture" class="dossier-section-body redacted"></p>
-        </div>
-        <div class="dossier-section">
-          <p class="dossier-section-label">// Operator Contribution</p>
-          <p id="dossier-contribution" class="dossier-section-body redacted"></p>
-        </div>
-        <div class="dossier-section">
-          <p class="dossier-section-label">// Outcome</p>
-          <p id="dossier-outcome" class="dossier-section-body redacted"></p>
-        </div>
-        <div id="dossier-links" class="dossier-links"></div>
-        <div class="dossier-footer">
-          <span class="dossier-footer-text">Parikshieth Harish | Security Clearance Granted</span>
-          <span class="dossier-footer-text" id="dossier-file-id"></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── AMBIENT BACKGROUND CANVAS ─── -->
+  <!-- ─── SHARED BODY-LEVEL ELEMENTS (cursor + ambient, always present) ─── -->
   <canvas id="ambient-bg" aria-hidden="true"></canvas>
-
-  <!-- ─── SIDE RAILS ─── -->
-  <div class="side-rail side-rail--left" aria-hidden="true">
-    <div class="rail-scan-line"></div>
-    <span class="rail-stamp">TOP SECRET // SCI // NOFORN</span>
-    <div class="rail-data">
-      <span class="rail-data-item" id="rail-coords-l">LAT 12.9716°N</span>
-      <span class="rail-data-item" id="rail-lon-l">LON 79.1588°E</span>
-      <span class="rail-data-item rail-data-item--dim">VIT · VELLORE</span>
-      <span class="rail-data-item" id="rail-time-l">--:--:--</span>
-      <span class="rail-data-item rail-data-item--dim">IST UTC+5:30</span>
-    </div>
-    <span class="rail-stamp rail-stamp--bottom">CLASSIFICATION: RESTRICTED</span>
-  </div>
-
-  <div class="side-rail side-rail--right" aria-hidden="true">
-    <div class="rail-scan-line"></div>
-    <span class="rail-stamp">PARIKSHIETH HARISH // PROFILE</span>
-    <div class="rail-data">
-      <span class="rail-data-item rail-data-item--dim">SUBJECT-ID</span>
-      <span class="rail-data-item" id="rail-id-r">PH-2026-VIT</span>
-      <span class="rail-data-item rail-data-item--dim">CLEARANCE</span>
-      <span class="rail-data-item" id="rail-status-r">OPEN RESEARCH</span>
-      <span class="rail-data-item rail-data-item--blink" id="rail-uptime-r">SYS ONLINE</span>
-    </div>
-    <span class="rail-stamp rail-stamp--bottom">REF: CV-SEC-2026 // UNCLASSIFIED</span>
-  </div>
-
   <svg id="cursor-dot" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- outer ring -->
     <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="0.75" opacity="0.5" />
-    <!-- cross lines -->
     <line x1="16" y1="2" x2="16" y2="10" stroke="currentColor" stroke-width="1" />
     <line x1="16" y1="22" x2="16" y2="30" stroke="currentColor" stroke-width="1" />
     <line x1="2" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="1" />
     <line x1="22" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="1" />
-    <!-- center dot -->
     <circle cx="16" cy="16" r="1.25" fill="currentColor" />
   </svg>
   <canvas id="cursor-trail" aria-hidden="true"></canvas>
+
+  <!-- ════════════════════════════════════════════════
+       WAR ROOM — desktop ≥900px
+       ════════════════════════════════════════════════ -->
+  <div id="warroom" role="application" aria-label="Command Center — Parikshieth Harish">
+
+    <!-- ─── SITREP TOP STRIP ─── -->
+    <header class="wr-sitrep" data-wr-boot>
+      <span class="wr-sitrep-classification">TOP SECRET // SCI // NOFORN</span>
+
+      <div class="wr-sitrep-cells">
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">UTC</span>
+          <span class="wr-sitrep-val" id="wr-clock-utc">--:--:--</span>
+        </div>
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">IST</span>
+          <span class="wr-sitrep-val" id="wr-clock-ist">--:--:--</span>
+        </div>
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">THREATCON</span>
+          <span class="wr-sitrep-val wr-threat-bravo" id="wr-threatcon">BRAVO</span>
+        </div>
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">OPS</span>
+          <span class="wr-sitrep-val" id="wr-ops-count">3 ACTIVE</span>
+        </div>
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">GEO</span>
+          <span class="wr-sitrep-val">12.97°N&nbsp;79.16°E</span>
+        </div>
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">LINK</span>
+          <span class="wr-sitrep-val">
+            <span class="wr-blink-dot" style="color:#2dd4bf"></span>&nbsp;SECURE
+          </span>
+        </div>
+        <div class="wr-sitrep-cell">
+          <span class="wr-sitrep-key">SUBJECT</span>
+          <span class="wr-sitrep-val">PH-2026-VIT</span>
+        </div>
+      </div>
+
+      <span class="wr-sitrep-classification">PARIKSHIETH HARISH // PROFILE ACTIVE</span>
+    </header>
+
+    <!-- ─── MAIN GRID ─── -->
+    <div class="wr-main">
+
+      <!-- ── LEFT COLUMN ── -->
+      <aside class="wr-left">
+
+        <!-- OPERATOR TILE -->
+        <div class="wr-tile wr-tile--operator wr-tile--interactive"
+             id="wr-tile-operator"
+             role="button" tabindex="0"
+             aria-label="Operator profile — click to view background"
+             data-wr-boot>
+          <div class="wr-tile-header">
+            <span class="wr-tile-label">OPERATOR</span>
+            <span class="wr-tile-badge wr-tile-badge--active">
+              <span class="wr-blink-dot"></span>&nbsp;ACTIVE
+            </span>
+          </div>
+          <div class="wr-operator-body">
+            <div>
+              <span class="wr-operator-callsign">FIELDSTATION // CV &amp; CYBERSEC</span>
+              <h1 class="wr-operator-name">Parikshieth<br>Harish</h1>
+            </div>
+            <div class="wr-operator-attrs">
+              <div class="wr-attr">
+                <span class="wr-attr-key">Domain</span>
+                <span class="wr-attr-val">Computer Vision · Cybersecurity</span>
+              </div>
+              <div class="wr-attr">
+                <span class="wr-attr-key">Base</span>
+                <span class="wr-attr-val">VIT Vellore · 2026</span>
+              </div>
+              <div class="wr-attr">
+                <span class="wr-attr-key">Clearance</span>
+                <span class="wr-attr-val wr-attr-val--accent">Open Research</span>
+              </div>
+            </div>
+          </div>
+          <div class="wr-tile-footer">
+            <span class="wr-tile-cmd">[ View Personnel File ]</span>
+          </div>
+        </div>
+
+        <!-- CAPABILITIES TILE -->
+        <div class="wr-tile wr-tile--capabilities wr-tile--interactive"
+             id="wr-tile-capabilities"
+             role="button" tabindex="0"
+             aria-label="Technical capabilities — click to expand"
+             data-wr-boot>
+          <div class="wr-tile-header">
+            <span class="wr-tile-label">Capabilities</span>
+            <span class="wr-tile-stat" id="wr-cap-domains">6 domains</span>
+          </div>
+          <div class="wr-cap-mini">
+            <canvas id="wr-cap-canvas" aria-hidden="true"></canvas>
+          </div>
+          <div class="wr-tile-footer">
+            <span class="wr-tile-cmd">[ Expand Matrix ]</span>
+          </div>
+        </div>
+
+        <!-- COMMS TILE -->
+        <div class="wr-tile wr-tile--comms" data-wr-boot>
+          <div class="wr-tile-header">
+            <span class="wr-tile-label">Comms</span>
+          </div>
+          <div class="wr-comms-links">
+            <a href="mailto:parikshieth@gmail.com" class="wr-comms-link">
+              <span class="wr-comms-icon">✉</span>
+              <span class="wr-comms-label">parikshieth@gmail.com</span>
+            </a>
+            <a href="https://github.com/zParik" target="_blank" rel="noopener" class="wr-comms-link">
+              <span class="wr-comms-icon">⌥</span>
+              <span class="wr-comms-label">github.com/zParik</span>
+            </a>
+            <a href="https://www.linkedin.com/in/parikshieth-harish-10481528b/" target="_blank" rel="noopener" class="wr-comms-link">
+              <span class="wr-comms-icon">⬡</span>
+              <span class="wr-comms-label">LinkedIn</span>
+            </a>
+            <a href="tel:+919962595200" class="wr-comms-link">
+              <span class="wr-comms-icon">☎</span>
+              <span class="wr-comms-label">+91 99625 95200</span>
+            </a>
+            <a href="https://1drv.ms/b/c/fcf757163cbff0d2/IQC56Ct6p0eYTZfb3iE5gT8cAQkY27lT1igtL0brLFxTZVY?e=ljB9ec"
+               target="_blank" rel="noopener" class="wr-comms-link">
+              <span class="wr-comms-icon">↓</span>
+              <span class="wr-comms-label">Resume</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ── CENTER PANEL (swap surface) ── -->
+      <main class="wr-center" id="wr-center" aria-live="polite">
+
+        <!-- MAP PANEL (default) -->
+        <div class="wr-panel wr-panel--map" id="wr-panel-map" data-panel="map" data-wr-boot>
+          <div class="wr-panel-hud">
+            <span class="wr-panel-label">Global Ops // Active Theater</span>
+            <div class="wr-panel-hud-right">
+              <span class="wr-panel-stat">
+                <span class="wr-blink-dot" style="color:#2dd4bf"></span>&nbsp;Live Feed
+              </span>
+              <span class="wr-panel-stat" id="wr-map-signals">16 signals</span>
+            </div>
+          </div>
+          <canvas id="wr-world-map"
+            aria-label="Global operations map — click nodes to view project dossiers"></canvas>
+          <div class="wr-map-legend">
+            <span class="wr-map-legend-item" style="--lc:#2dd4bf">Security</span>
+            <span class="wr-map-legend-item" style="--lc:#60a5fa">Accessibility</span>
+            <span class="wr-map-legend-item" style="--lc:#fbbf24">Hackathon</span>
+            <span class="wr-map-legend-item" style="--lc:#a78bfa">Systems</span>
+          </div>
+        </div>
+
+        <!-- DOSSIER PANEL -->
+        <div class="wr-panel wr-panel--dossier" id="wr-panel-dossier" data-panel="dossier" hidden>
+          <div class="wr-panel-hud">
+            <button class="wr-panel-back" id="wr-panel-back" aria-label="Return to map">
+              &#8592; [ Return to Map ]
+            </button>
+            <span class="wr-panel-label" id="wr-dossier-file-id">FILE-000</span>
+          </div>
+          <div class="wr-inline-dossier" id="wr-inline-dossier"></div>
+        </div>
+
+        <!-- CAPABILITIES PANEL -->
+        <div class="wr-panel wr-panel--capabilities" id="wr-panel-capabilities" data-panel="capabilities" hidden>
+          <div class="wr-panel-hud">
+            <button class="wr-panel-back" id="wr-cap-back" aria-label="Return to map">
+              &#8592; [ Return to Map ]
+            </button>
+            <span class="wr-panel-label">Capability Matrix // Interdisciplinary</span>
+          </div>
+          <div class="wr-cap-full" id="wr-cap-full"></div>
+        </div>
+
+        <!-- OPERATOR / BACKGROUND PANEL -->
+        <div class="wr-panel wr-panel--operator" id="wr-panel-operator" data-panel="operator" hidden>
+          <div class="wr-panel-hud">
+            <button class="wr-panel-back" id="wr-op-back" aria-label="Return to map">
+              &#8592; [ Return to Map ]
+            </button>
+            <span class="wr-panel-label">Personnel File // PH-2026-VIT</span>
+          </div>
+          <div class="wr-op-full" id="wr-op-full"></div>
+        </div>
+
+      </main>
+
+      <!-- ── RIGHT COLUMN ── -->
+      <aside class="wr-right">
+
+        <!-- MISSION QUEUE -->
+        <div class="wr-tile wr-tile--mission" data-wr-boot>
+          <div class="wr-tile-header">
+            <span class="wr-tile-label">Mission Queue</span>
+            <span class="wr-tile-badge wr-tile-badge--active">
+              <span class="wr-blink-dot"></span>&nbsp;Live
+            </span>
+          </div>
+          <div class="wr-mission-list" id="wr-mission-list" role="list"></div>
+        </div>
+
+        <!-- TELEMETRY -->
+        <div class="wr-tile wr-tile--telemetry" data-wr-boot>
+          <div class="wr-tile-header">
+            <span class="wr-tile-label">Telemetry // GitHub</span>
+          </div>
+          <div class="wr-telemetry-body" id="wr-telemetry-body">
+            <div class="wr-telemetry-sparkline">
+              <div class="wr-sparkline" id="wr-sparkline" aria-label="Commits last 7 days">
+                <!-- bars injected by telemetry.js -->
+              </div>
+              <span class="wr-sparkline-label">7-day commit activity</span>
+            </div>
+            <div class="wr-telemetry-stats">
+              <div class="wr-tel-stat">
+                <span class="wr-tel-key">Commits 7D</span>
+                <span class="wr-tel-val" id="wr-tel-commits">--</span>
+              </div>
+              <div class="wr-tel-stat">
+                <span class="wr-tel-key">Repos</span>
+                <span class="wr-tel-val" id="wr-tel-repos">--</span>
+              </div>
+              <div class="wr-tel-stat">
+                <span class="wr-tel-key">Last Commit</span>
+                <span class="wr-tel-val wr-tel-val--mono" id="wr-tel-last">--</span>
+              </div>
+            </div>
+            <div class="wr-telemetry-activity" id="wr-telemetry-activity"></div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div><!-- /wr-main -->
+
+    <!-- ─── CLI FEED BOTTOM STRIP ─── -->
+    <footer class="wr-cli-feed" aria-label="System feed" data-wr-boot>
+      <span class="wr-cli-prompt">SYS&nbsp;&#9658;</span>
+      <div class="wr-cli-ticker">
+        <span class="wr-cli-item" id="wr-cli-content">INITIALIZING FEED...</span>
+      </div>
+      <span class="wr-cli-right">
+        <span class="wr-cli-cursor" aria-hidden="true">&#9608;</span>
+      </span>
+    </footer>
+
+  </div><!-- /warroom -->
+
+  <!-- ════════════════════════════════════════════════
+       LEGACY — mobile <900px (existing scroll layout)
+       ════════════════════════════════════════════════ -->
+  <div id="legacy">
+
+    <nav>
+      <a href="#" class="nav-logo" aria-label="Parikshieth Harish">PH</a>
+      <ul class="nav-links">
+        <li><a href="#projects">01 Work</a></li>
+        <li><a href="#skills">02 Capabilities</a></li>
+        <li><a href="#background">03 Background</a></li>
+        <li><a href="#off-clock">04 Off-Clock</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="mailto:parikshieth@gmail.com" class="nav-contact">Contact</a>
+      </div>
+      <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="hamburger-icon"></span>
+      </button>
+    </nav>
+
+    <div id="mobile-drawer-scrim" class="mobile-drawer-scrim" aria-hidden="true"></div>
+    <div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation">
+      <div class="drawer-header">
+        <span class="drawer-header-label">Navigation</span>
+        <button class="drawer-close" id="drawer-close" aria-label="Close menu">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="1" y1="1" x2="11" y2="11" />
+            <line x1="11" y1="1" x2="1" y2="11" />
+          </svg>
+        </button>
+      </div>
+      <nav class="drawer-nav">
+        <a href="#projects"><span class="drawer-num">01</span><span class="drawer-label">Work</span></a>
+        <a href="#skills"><span class="drawer-num">02</span><span class="drawer-label">Capabilities</span></a>
+        <a href="#background"><span class="drawer-num">03</span><span class="drawer-label">Background</span></a>
+        <a href="#off-clock"><span class="drawer-num">04</span><span class="drawer-label">Off-Clock</span></a>
+      </nav>
+      <div class="drawer-footer">
+        <a href="mailto:parikshieth@gmail.com" class="drawer-cta">Contact</a>
+      </div>
+    </div>
+
+    <main>
+
+      <!-- ─── HERO ─── -->
+      <section class="hero">
+        <div class="hero-voxel-bg" aria-hidden="true"><canvas id="voxel-canvas"></canvas></div>
+        <div class="hero-inner">
+
+          <p class="hero-eyebrow">Computer Vision &amp; Cybersecurity Researcher</p>
+          <h1 class="hero-name">Parikshieth Harish</h1>
+
+          <p class="hero-impact">Built a 3D-CNN EDR achieving 88% accuracy on unseen malware families. Sole architect,
+            from research hypothesis to paper under review.</p>
+
+          <div class="hero-abstract">
+            <span class="abstract-marker">FIELD NOTES</span>
+            <p class="abstract-body">
+              I've been fascinated by cybersecurity since before I knew what to call it. I was the kid picking apart
+              systems just to see how they worked, running Linux in high school while everyone else was on Windows. CV
+              came later, through a professor who taught it like it was the most important field in the world. Turns out,
+              he wasn't wrong. The two clicked for me: if you understand how systems break, you build smarter ones.
+              That overlap is where I work.
+            </p>
+          </div>
+
+          <div class="hero-bottom-row">
+            <div class="hero-socials">
+              <a href="tel:+919962595200" class="hero-social" aria-label="Call +91 99625 95200">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.01 1.21 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
+                </svg>
+              </a>
+              <a href="mailto:parikshieth@gmail.com" class="hero-social" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/parikshieth-harish-10481528b/" class="hero-social"
+                aria-label="LinkedIn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a href="https://github.com/zParik" class="hero-social" aria-label="GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                </svg>
+              </a>
+              <span class="hero-social hero-social-location" aria-label="Vellore, Tamil Nadu, India"
+                title="Vellore, Tamil Nadu, India">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </span>
+              <a href="https://1drv.ms/b/c/fcf757163cbff0d2/IQC56Ct6p0eYTZfb3iE5gT8cAQkY27lT1igtL0brLFxTZVY?e=ljB9ec" class="hero-social hero-social-resume" aria-label="Download Resume" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <polyline points="14,2 14,8 20,8" />
+                  <line x1="12" y1="11" x2="12" y2="17" />
+                  <polyline points="9,14 12,17 15,14" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn-primary">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
+                View Research
+              </a>
+              <a href="mailto:parikshieth@gmail.com" class="btn-secondary">Get in Touch</a>
+            </div>
+          </div>
+
+          <div class="hero-manifest">
+            <div class="manifest-rule"></div>
+            <div class="manifest-grid">
+              <div class="manifest-col">
+                <span class="manifest-key">Domain</span>
+                <span class="manifest-val">Computer Vision<br>Cybersecurity</span>
+              </div>
+              <div class="manifest-col">
+                <span class="manifest-key">Affiliation</span>
+                <span class="manifest-val"><strong>VIT</strong> Vellore<br>Bachelor of Computer Applications · 2026</span>
+              </div>
+              <div class="manifest-col">
+                <span class="manifest-key">Status</span>
+                <span class="manifest-val">
+                  <span class="manifest-status-live">
+                    <span class="manifest-status-dot"></span>
+                    Open for<br>Collaboration
+                  </span>
+                </span>
+              </div>
+              <div class="manifest-col">
+                <span class="manifest-key">Classification</span>
+                <span class="manifest-val"><span class="manifest-classify">Open Research</span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ─── PROJECTS ─── -->
+      <div id="projects">
+        <div class="section-shell">
+          <div class="section-rule reveal"></div>
+          <div class="section-header reveal">
+            <span class="section-num">01</span>
+            <h2 class="section-title">Research &amp; Projects</h2>
+          </div>
+
+          <div class="projects-index">
+
+            <div class="radar-section" id="radar-section" hidden>
+              <div class="radar-wrap">
+                <div class="radar-canvas-wrap">
+                  <img class="ouroboros-ring" id="ouroboros-ring" src="drawing.svg" aria-hidden="true" alt="">
+                  <canvas id="intel-radar"
+                    aria-label="Intel radar: 21 classified projects. Use arrow keys to navigate, Enter to open dossier."></canvas>
+                </div>
+              </div>
+              <div class="radar-legend">
+                <span class="rl-item"><span class="rl-dot" style="background:#2dd4bf"></span>Security</span>
+                <span class="rl-item"><span class="rl-dot" style="background:#60a5fa"></span>Accessibility</span>
+                <span class="rl-item"><span class="rl-dot" style="background:#fbbf24"></span>Hackathon</span>
+                <span class="rl-item"><span class="rl-dot" style="background:#a78bfa"></span>Systems</span>
+                <span class="rl-item rl-item--active"><span class="rl-dot rl-dot--active"></span>Active Research</span>
+              </div>
+              <p class="radar-instruction" id="radar-instruction">
+                <span class="ri-tag">[SYS]</span>
+                <span class="ri-label">SIGNAL INTERACTION PROTOCOL</span>
+                <span class="ri-sep">—</span>
+                <span class="ri-cmd">CLICK</span> select signal
+                <span class="ri-sep">·</span>
+                <span class="ri-cmd">↑↓</span> navigate
+                <span class="ri-sep">·</span>
+                <span class="ri-cmd">ENTER</span> open dossier
+              </p>
+              <button class="radar-back-btn" id="radar-back-btn" aria-label="Return to project list">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                [ RE-ENGAGE PERCEPTION FILTERS ]
+              </button>
+            </div>
+
+            <div class="manifest-section" id="manifest-section">
+              <div class="manifest-header reveal">
+                <div class="manifest-header-left">
+                  <span class="manifest-header-label">All Files</span>
+                  <span class="manifest-header-count">&times;&thinsp;14</span>
+                </div>
+                <div class="manifest-col-labels">
+                  <span>Codename</span>
+                  <span>Domain</span>
+                  <span>Key Metric</span>
+                  <span>Status</span>
+                </div>
+              </div>
+
+              <div class="manifest-list" id="manifest-list"></div>
+
+              <button class="earlier-work-toggle manifest-earlier-toggle" id="earlier-work-toggle" aria-expanded="false"
+                aria-controls="earlier-work-rows">
+                <span class="ewt-static">
+                  <svg class="manifest-expand-icon" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                  <span class="earlier-work-toggle-text">Show Earlier Work</span>
+                  <span class="manifest-expand-count">2 projects</span>
+                </span>
+                <span class="ewt-progress-wrap" aria-hidden="true">
+                  <span class="ewt-status" id="ewt-status">INITIATING DECRYPTION...</span>
+                  <span class="ewt-bar-row">
+                    <span class="ewt-bar-label-l">ACCESS [</span>
+                    <span class="ewt-bar" id="ewt-bar"></span>
+                    <span class="ewt-bar-label-r">]</span>
+                    <span class="ewt-pct" id="ewt-pct">0%</span>
+                  </span>
+                </span>
+              </button>
+
+              <div id="earlier-work-rows" class="earlier-work-rows" hidden>
+                <div class="manifest-list manifest-list--muted" id="earlier-work-list"></div>
+              </div>
+
+              <div class="radar-reveal-row">
+                <div class="radar-teaser" aria-hidden="true">
+                  <canvas class="radar-teaser-canvas" id="radar-teaser-canvas" width="72" height="72"></canvas>
+                  <span class="radar-teaser-label">16 signals detected</span>
+                </div>
+                <button class="radar-reveal-btn" id="radar-reveal-btn">
+                  <span class="rrb-text">[ OVERRIDE COGNITOHAZARD FILTERS ]</span>
+                  <svg class="rrb-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" aria-hidden="true">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── CAPABILITIES ─── -->
+      <div id="skills">
+        <div class="section-shell">
+          <div class="section-rule reveal"></div>
+          <div class="section-header reveal">
+            <span class="section-num">02</span>
+            <h2 class="section-title">Technical Capabilities</h2>
+          </div>
+
+          <div class="graph-section reveal" aria-label="Capability graph">
+            <div class="threat-map-wrap">
+              <canvas id="threat-map"></canvas>
+              <div class="threat-map-hud">
+                <span class="threat-map-label">CAPABILITY GRAPH // INTERDISCIPLINARY NETWORK</span>
+                <span class="threat-map-stat" id="threat-arc-count">LINKS: --</span>
+                <span class="threat-map-stat" id="threat-node-count">DOMAINS: --</span>
+                <span class="threat-map-stat threat-map-stat--live"><span class="threat-blink"></span>LIVE FEED</span>
+              </div>
+              <div class="threat-map-legend">
+                <span class="threat-legend-item threat-legend-item--cv">Computer Vision &amp; ML</span>
+                <span class="threat-legend-item threat-legend-item--sec">Security &amp; Cryptography</span>
+                <span class="threat-legend-item threat-legend-item--sys">Systems &amp; Backend</span>
+              </div>
+            </div>
+
+            <div class="graph-mobile-list" aria-label="Capability domains">
+              <div class="graph-mobile-you">
+                <span class="graph-mobile-node graph-mobile-node--me">&#x2B24; Parikshieth — Researcher</span>
+              </div>
+              <div class="graph-mobile-group">
+                <span class="graph-mobile-group-label graph-mobile-group-label--cv">Computer Vision &amp; ML</span>
+                <div class="graph-mobile-nodes">
+                  <span class="graph-mobile-node graph-mobile-node--cv graph-mobile-node--primary">Computer Vision</span>
+                  <span class="graph-mobile-node graph-mobile-node--cv graph-mobile-node--primary">Deep Learning</span>
+                  <span class="graph-mobile-node graph-mobile-node--cv">Assistive AI</span>
+                  <span class="graph-mobile-node graph-mobile-node--cv">ML Research</span>
+                </div>
+              </div>
+              <div class="graph-mobile-group">
+                <span class="graph-mobile-group-label graph-mobile-group-label--sec">Security &amp; Cryptography</span>
+                <div class="graph-mobile-nodes">
+                  <span class="graph-mobile-node graph-mobile-node--sec graph-mobile-node--primary">Endpoint Security</span>
+                  <span class="graph-mobile-node graph-mobile-node--sec graph-mobile-node--primary">Cryptography</span>
+                  <span class="graph-mobile-node graph-mobile-node--sec">Malware Analysis</span>
+                </div>
+              </div>
+              <div class="graph-mobile-group">
+                <span class="graph-mobile-group-label graph-mobile-group-label--sys">Systems &amp; Backend</span>
+                <div class="graph-mobile-nodes">
+                  <span class="graph-mobile-node graph-mobile-node--sys graph-mobile-node--primary">Systems / C++</span>
+                  <span class="graph-mobile-node graph-mobile-node--sys graph-mobile-node--primary">Networking</span>
+                  <span class="graph-mobile-node graph-mobile-node--sys">Backend / Data</span>
+                  <span class="graph-mobile-node graph-mobile-node--sys">Frontend / Mobile</span>
+                  <span class="graph-mobile-node graph-mobile-node--sys">Databases</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cap-bridge reveal" aria-hidden="true">
+            <span class="cap-bridge-line"></span>
+            <span class="cap-bridge-label">INVENTORY</span>
+            <span class="cap-bridge-line"></span>
+          </div>
+
+          <div class="spec-grid reveal">
+            <div class="spec-cell spec-cell--primary" data-domain="cv">
+              <div class="spec-cell-header">
+                <span class="spec-cell-domain">Computer Vision</span>
+                <span class="spec-cell-depth primary">Primary</span>
+              </div>
+              <div class="spec-cell-tools">
+                <span class="spec-tag">PyTorch</span><span class="spec-tag">YOLOv8</span><span
+                  class="spec-tag">MediaPipe</span><span class="spec-tag">3D-CNN</span><span
+                  class="spec-tag">OpenCV</span>
+              </div>
+            </div>
+            <div class="spec-cell spec-cell--primary" data-domain="sec">
+              <div class="spec-cell-header">
+                <span class="spec-cell-domain">Security &amp; Cryptography</span>
+                <span class="spec-cell-depth primary">Primary</span>
+              </div>
+              <div class="spec-cell-tools">
+                <span class="spec-tag">RSA Blind Signatures</span><span class="spec-tag">AES-GCM</span><span
+                  class="spec-tag">ECDH</span><span class="spec-tag">EDR</span><span class="spec-tag">ONNX</span>
+              </div>
+            </div>
+            <div class="spec-cell spec-cell--proficient" data-domain="sys">
+              <div class="spec-cell-header">
+                <span class="spec-cell-domain">Systems</span>
+                <span class="spec-cell-depth proficient">Proficient</span>
+              </div>
+              <div class="spec-cell-tools">
+                <span class="spec-tag">C / C++</span><span class="spec-tag arch-span" title="I use Arch btw">Linux</span><span
+                  class="spec-tag">Networking</span><span class="spec-tag">Cisco</span><span class="spec-tag">IPC</span><span class="spec-tag">DSA</span>
+              </div>
+            </div>
+            <div class="spec-cell spec-cell--proficient" data-domain="sys">
+              <div class="spec-cell-header">
+                <span class="spec-cell-domain">Backend &amp; Data</span>
+                <span class="spec-cell-depth proficient">Proficient</span>
+              </div>
+              <div class="spec-cell-tools">
+                <span class="spec-tag">Python</span><span class="spec-tag">Flask</span><span
+                  class="spec-tag">Node.js</span><span class="spec-tag">Express</span><span
+                  class="spec-tag">Django</span><span class="spec-tag">PHP</span><span class="spec-tag">Grafana</span>
+              </div>
+            </div>
+            <div class="spec-cell spec-cell--applied" data-domain="sys">
+              <div class="spec-cell-header">
+                <span class="spec-cell-domain">Frontend</span>
+                <span class="spec-cell-depth applied">Applied</span>
+              </div>
+              <div class="spec-cell-tools">
+                <span class="spec-tag">ReactJS</span><span class="spec-tag">Next.js</span><span
+                  class="spec-tag">Flutter</span><span class="spec-tag">Dart</span><span class="spec-tag">Vanilla JS</span>
+              </div>
+            </div>
+            <div class="spec-cell spec-cell--applied" data-domain="sys">
+              <div class="spec-cell-header">
+                <span class="spec-cell-domain">Databases</span>
+                <span class="spec-cell-depth applied">Applied</span>
+              </div>
+              <div class="spec-cell-tools">
+                <span class="spec-tag">PostgreSQL</span><span class="spec-tag">MySQL</span><span
+                  class="spec-tag">MongoDB</span><span class="spec-tag">InfluxDB</span><span
+                  class="spec-tag">SQLite</span><span class="spec-tag">Supabase</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="humint-block reveal">
+            <div class="humint-header">
+              <span class="humint-label">HUMINT</span>
+              <span class="humint-sub">Human Intelligence Profile</span>
+            </div>
+            <div class="humint-body">
+              <div class="humint-col">
+                <span class="humint-col-key">Operational Traits</span>
+                <div class="humint-traits">
+                  <span class="humint-trait">Communication</span>
+                  <span class="humint-trait">Critical Thinking</span>
+                  <span class="humint-trait">Teamwork</span>
+                  <span class="humint-trait">Leadership</span>
+                  <span class="humint-trait">Problem Solving</span>
+                  <span class="humint-trait">Adaptability</span>
+                </div>
+              </div>
+              <div class="humint-divider" aria-hidden="true"></div>
+              <div class="humint-col humint-col--langs">
+                <span class="humint-col-key">Linguistic Clearance</span>
+                <div class="humint-langs">
+                  <span class="humint-lang"><span class="humint-lang-dot"></span>Tamil<span class="humint-lang-level">Native</span></span>
+                  <span class="humint-lang"><span class="humint-lang-dot"></span>English<span class="humint-lang-level">Fluent</span></span>
+                  <span class="humint-lang"><span class="humint-lang-dot"></span>German<span class="humint-lang-level">A2</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── BACKGROUND ─── -->
+      <div id="background">
+        <div class="section-shell">
+          <div class="section-rule reveal"></div>
+          <div class="section-header reveal">
+            <span class="section-num">03</span>
+            <h2 class="section-title">Background</h2>
+          </div>
+
+          <div class="bg-layout">
+
+            <div class="edu-row reveal">
+              <div class="edu-abbr" aria-hidden="true">VIT</div>
+              <div>
+                <p class="edu-degree">BCA, Bachelor of Computer Applications</p>
+                <p class="edu-institution">Vellore Institute of Technology</p>
+                <p class="edu-year">Expected 2026</p>
+                <div class="edu-badges">
+                  <a class="edu-badge edu-badge--link" href="https://1drv.ms/b/c/fcf757163cbff0d2/IQAizzWX_Os3Sr_MhwTHaeryAeJtOsnAUsyeTudTx3EEWMQ" target="_blank" rel="noopener" aria-label="Merit Scholarship certificate, Year 1">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    <span class="edu-badge-label">CGPA</span><span class="edu-badge-sep">·</span><span class="edu-badge-val">Top 10 &middot; Y1</span>
+                  </a>
+                  <a class="edu-badge edu-badge--link" href="https://1drv.ms/b/c/fcf757163cbff0d2/IQCYRTF4ok3bS5HzD2TnhOxdAURmlqq3sK0ngRTePWhnjmY?e=5Pk8nL" target="_blank" rel="noopener" aria-label="Merit Scholarship certificate, Year 2">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    <span class="edu-badge-label">CGPA</span><span class="edu-badge-sep">·</span><span class="edu-badge-val">Top 10 &middot; Y2</span>
+                  </a>
+                  <a class="edu-badge edu-badge--link" href="https://1drv.ms/b/c/fcf757163cbff0d2/IQB9AE8Rb7i3Rq62VOpUF4peAb4SHAE2IiF_Qf9-KZLMfMQ?e=2DA2ri" target="_blank" rel="noopener" aria-label="Merit Scholarship certificate, Year 3">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                    <span class="edu-badge-label">CGPA</span><span class="edu-badge-sep">·</span><span class="edu-badge-val">Top 10 &middot; Y3 - CGPA 9.3</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal">
+              <p class="certs-sub-label">Certifications</p>
+              <div class="certs-list">
+                <a class="cert-item" href="https://coursera.org/share/7b024f7bf9574fab1fecc731b259591c" target="_blank" rel="noopener">
+                  <span class="cert-item-name">IBM Cybersecurity Analyst</span>
+                  <span class="cert-item-meta">9-course · IBM</span>
+                </a>
+                <a class="cert-item" href="https://coursera.org/share/37feb7ab579c73ec4240aa38eb3e34eb" target="_blank" rel="noopener">
+                  <span class="cert-item-name">AWS Cloud Technical Essentials</span>
+                  <span class="cert-item-meta">AWS</span>
+                </a>
+                <a class="cert-item" href="https://www.udemy.com/certificate/UC-5e650896-ec1e-4ee8-bb94-787b11165c5e/" target="_blank" rel="noopener">
+                  <span class="cert-item-name">The Complete JavaScript Course 2023</span>
+                  <span class="cert-item-meta">Jonas Schmedtmann · Udemy</span>
+                </a>
+                <a class="cert-item" href="https://www.udemy.com/certificate/UC-20a1f4d4-5068-48a7-88b1-2d99c8b789c3/" target="_blank" rel="noopener">
+                  <span class="cert-item-name">Next.js &amp; React - The Complete Guide</span>
+                  <span class="cert-item-meta">Maximilian Schwarzmüller · Udemy</span>
+                </a>
+                <a class="cert-item" href="https://www.udemy.com/certificate/UC-cdfa5287-e586-45a3-99c2-64701d0ccbd6/" target="_blank" rel="noopener">
+                  <span class="cert-item-name">React, NodeJS, Express &amp; MongoDB - The MERN Fullstack Guide</span>
+                  <span class="cert-item-meta">Academind · Udemy</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── OFF-CLOCK ─── -->
+      <div id="off-clock">
+        <div class="section-shell">
+          <div class="section-rule reveal"></div>
+          <div class="section-header reveal">
+            <span class="section-num">04</span>
+            <h2 class="section-title">Off-Clock</h2>
+          </div>
+
+          <div class="offclock-body reveal">
+            <div class="offclock-wrap">
+              <div class="offclock-bg-stamp" aria-hidden="true">UNCLASSIFIED</div>
+              <div class="offclock-grid">
+                <div class="offclock-item">
+                  <div class="offclock-item-inner">
+                    <span class="offclock-key">ARCHIVES</span>
+                    <span class="offclock-val">Sci-Fi, conspiracy thrillers, and deep lore. Star Wars &amp; Dan Brown.</span>
+                    <span class="offclock-sub">// currently: re-reading Angels &amp; Demons</span>
+                  </div>
+                </div>
+                <div class="offclock-item">
+                  <div class="offclock-item-inner">
+                    <span class="offclock-key">GAMES</span>
+                    <span class="offclock-val">Age of Empires &middot; Retro NES &middot; Hollow Knight &middot; Apex &middot; Ultrakill</span>
+                    <span class="offclock-sub">// currently: dying repeatedly in Ultrakill</span>
+                  </div>
+                </div>
+                <div class="offclock-item">
+                  <div class="offclock-item-inner">
+                    <span class="offclock-key">LINUX</span>
+                    <span class="offclock-val">Ricing, window managers, dotfiles. Always a work in progress.</span>
+                    <span class="offclock-sub">// yes, Arch btw</span>
+                  </div>
+                </div>
+                <div class="offclock-item">
+                  <div class="offclock-item-inner">
+                    <span class="offclock-key">WRITING</span>
+                    <span class="offclock-val">Short fiction. Usually dark. Rarely finished.</span>
+                    <span class="offclock-sub">// SCP-style is a personal favourite</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="offclock-terminal">
+              <p class="terminal-section-label">Active Sessions</p>
+              <div class="terminal" id="terminal">
+                <div class="terminal-bar">
+                  <span class="terminal-dot red"></span>
+                  <span class="terminal-dot amber"></span>
+                  <span class="terminal-dot green"></span>
+                  <span class="terminal-title">parikshieth: zsh</span>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                  <span class="t-cursor"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <span class="footer-classified" aria-hidden="true">CLASSIFIED</span>
+      <div class="footer-left">
+        <a href="mailto:parikshieth@gmail.com">parikshieth@gmail.com</a>
+        &nbsp;&mdash;&nbsp;
+        <a href="tel:+919962595200">+91 99625 95200</a>
+      </div>
+      <div class="footer-right">&copy; <span id="footer-year"></span> Parikshieth Harish</div>
+    </footer>
+
+    <!-- ─── DOSSIER OVERLAY ─── -->
+    <div id="radar-tooltip" class="radar-tooltip" hidden></div>
+
+    <div id="dossier-overlay" class="dossier-overlay" role="dialog" aria-modal="true" aria-labelledby="dossier-name">
+      <div id="dossier-panel" class="dossier-panel">
+        <div class="dossier-drag-handle" aria-hidden="true"></div>
+        <div class="dossier-folder-tab">
+          <span class="dossier-folder-label">CLASSIFIED FILE</span>
+          <span id="dossier-tab-name" class="dossier-folder-name"></span>
+        </div>
+        <div class="dossier-inner">
+          <div class="dossier-header">
+            <div class="dossier-stamps">
+              <span id="dossier-stamp" class="dossier-stamp">CLEARANCE: ACTIVE</span>
+              <span id="dossier-status-badge" class="dossier-status-badge"></span>
+            </div>
+            <button id="dossier-close" class="dossier-close" aria-label="Close dossier">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+              CLOSE FILE
+            </button>
+          </div>
+          <div class="dossier-title-block">
+            <p id="dossier-badge" class="dossier-badge-label"></p>
+            <h2 id="dossier-name" class="dossier-name"></h2>
+            <div class="dossier-meta-row">
+              <span class="dossier-meta-key">OPERATOR</span>
+              <span id="dossier-role" class="dossier-meta-val"></span>
+              <span class="dossier-separator">|</span>
+              <span class="dossier-meta-key">STATUS</span>
+              <span id="dossier-status-text" class="dossier-meta-val"></span>
+            </div>
+          </div>
+          <div class="dossier-redact-bar"></div>
+          <div id="dossier-metrics-strip" class="dossier-metrics-strip"></div>
+          <div class="dossier-section">
+            <p class="dossier-section-label">// Overview</p>
+            <p id="dossier-overview" class="dossier-section-body redacted"></p>
+          </div>
+          <div class="dossier-section">
+            <p class="dossier-section-label">// Architecture</p>
+            <p id="dossier-architecture" class="dossier-section-body redacted"></p>
+          </div>
+          <div class="dossier-section">
+            <p class="dossier-section-label">// Operator Contribution</p>
+            <p id="dossier-contribution" class="dossier-section-body redacted"></p>
+          </div>
+          <div class="dossier-section">
+            <p class="dossier-section-label">// Outcome</p>
+            <p id="dossier-outcome" class="dossier-section-body redacted"></p>
+          </div>
+          <div id="dossier-links" class="dossier-links"></div>
+          <div class="dossier-footer">
+            <span class="dossier-footer-text">Parikshieth Harish | Security Clearance Granted</span>
+            <span class="dossier-footer-text" id="dossier-file-id"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SIDE RAILS (legacy only) ─── -->
+    <div class="side-rail side-rail--left" aria-hidden="true">
+      <div class="rail-scan-line"></div>
+      <span class="rail-stamp">TOP SECRET // SCI // NOFORN</span>
+      <div class="rail-data">
+        <span class="rail-data-item" id="rail-coords-l">LAT 12.9716°N</span>
+        <span class="rail-data-item" id="rail-lon-l">LON 79.1588°E</span>
+        <span class="rail-data-item rail-data-item--dim">VIT · VELLORE</span>
+        <span class="rail-data-item" id="rail-time-l">--:--:--</span>
+        <span class="rail-data-item rail-data-item--dim">IST UTC+5:30</span>
+      </div>
+      <span class="rail-stamp rail-stamp--bottom">CLASSIFICATION: RESTRICTED</span>
+    </div>
+
+    <div class="side-rail side-rail--right" aria-hidden="true">
+      <div class="rail-scan-line"></div>
+      <span class="rail-stamp">PARIKSHIETH HARISH // PROFILE</span>
+      <div class="rail-data">
+        <span class="rail-data-item rail-data-item--dim">SUBJECT-ID</span>
+        <span class="rail-data-item" id="rail-id-r">PH-2026-VIT</span>
+        <span class="rail-data-item rail-data-item--dim">CLEARANCE</span>
+        <span class="rail-data-item" id="rail-status-r">OPEN RESEARCH</span>
+        <span class="rail-data-item rail-data-item--blink" id="rail-uptime-r">SYS ONLINE</span>
+      </div>
+      <span class="rail-stamp rail-stamp--bottom">REF: CV-SEC-2026 // UNCLASSIFIED</span>
+    </div>
+
+  </div><!-- /legacy -->
+
   <script type="module" src="main.js"></script>
 </body>
 

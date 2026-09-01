@@ -1,7 +1,7 @@
 /* ─── PROJECT DATA ─── */
 import { prefersReducedMotion, escHtml } from './utils.js';
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     id: 'FILE-000', active: true, cat: 'sys',
     ariaLabel: 'FIELDSTATION ZERO: This site. Experimental zero-dependency portfolio. Press Enter to view details.',
@@ -53,7 +53,86 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-003', cat: 'security',
+    id: 'FILE-003', active: true, cat: 'sys',
+    ariaLabel: 'ZonFormer: Deep RL for HPC batch scheduling, audited for realism and transfer. Press Enter to view details.',
+    codename: 'ZonFormer', domain: 'Deep RL · Systems', metric: '+33.6% headroom',
+    dossier: {
+      clearance: 'ACTIVE RESEARCH', name: 'Generate, Generalize, Audit',
+      badge: 'Active — Present | Deep Reinforcement Learning · Systems',
+      role: 'Sole Researcher & Engineer', status: 'ONGOING', unredacted: true,
+      overview: 'Deep RL for HPC batch scheduling — audited for realism, transfer and measurement rather than driven toward a win.||The opening question: do published "DRL beats backfilling" gains survive cleaned traces, honest baselines and zero-shot evaluation? Largely they do not. Worse, the synthetic workload generators the field validates on are not downstream-valid in the first place.||Current phase: portfolio distillation. The finding that reframed the project is that no single policy wins everywhere — learned or hand-written.',
+      architecture: 'Stack: PyTorch + SB3 PPO + a discrete-event cluster simulator||ZonFormer: relational attention over the job queue with a glimpse-pointer head, reading the cluster availability timeline directly. The MoE variant adds a shared FFN plus 8 zero-init routed experts, top-k routing, Switch balance and z-loss; n_experts=0 is bit-identical to the dense model across 200 real-checkpoint decisions.||A guarded (shielded) environment makes the catastrophic failure mode structurally impossible — worst case is EASY, by construction and by property test.||Every artifact is stamped with git commit, dirty flag, library versions and command line. Traces are pinned by SHA-256 and by SWF header fingerprint, so any number in results/ traces back to the code that produced it.',
+      contribution: 'Sole researcher and engineer.||Built the downstream-equivalence bar: a generator is judged by whether a scheduler ranks the same on it, not by how its marginals look. Open-loop NHPP generators pass on 1 of 6 traces; the closed-loop user-feedback generator built here passes on 3 of 6. KS tests on runtimes and sizes do not detect the failure at all.||Designed EASY-PC, the guarded environment, the ZonFormer architecture, and the portfolio-distillation pipeline — behaviour cloning with three DAgger rounds, then PPO, then distilling six teachers into a single policy.||Kept the record honest against my own results; the failures below are logged, not tuned away.',
+      outcome: 'The load-bearing measurement: a heuristic-only oracle has no headroom — median 0.0% across 4 of 17 traces. Add the learned checkpoints and the per-episode oracle opens +33.6% over the best heuristic. An RL checkpoint is the strongest teacher on 23% of episodes and the cloned policy on 8.7%, covering regimes the best heuristic does not own. The learned models are what make the ensemble ceiling exist.||Falsified my own explanation: training inside the equivalence-passing workload family wins 4 of 6 real traces and still collapses out of distribution.||Found mean normalized regret unsafe as a transfer metric — one near-idle machine puts a floor value in the denominator and moves the mean by two orders of magnitude, reversing rankings.||Gates recorded as failed where they failed: behaviour cloning adjudicated NEAR-MISS at 0.7367 against a 0.7292 bar; the first PPO run discarded once a pooled-EASY normalizer was found to make fragmented episodes unwinnable by construction; decision cost measured at 24.7ms against a 0.85ms teacher — 29x over the bar, reported as a failed gate.||Final ladder in progress: 5 of 17 traces scored, the hard traces still outstanding.',
+      stat: '+33.6%', statLabel: 'oracle headroom over best heuristic',
+      stat2: '17 traces', stat2Label: 'held out, run once',
+    },
+  },
+  {
+    id: 'FILE-004', active: true, cat: 'sys',
+    ariaLabel: 'EMBARGO: Sealed systems research, manuscript under peer review. Press Enter to view details.',
+    codename: 'EMBARGO', domain: 'Systems Research', metric: 'SEALED',
+    dossier: {
+      clearance: 'SEALED — PENDING REVIEW', name: 'EMBARGO',
+      badge: 'Under Peer Review | Details Sealed',
+      role: 'Lead Author & Systems Engineer', status: 'UNDER REVIEW', unredacted: true,
+      overview: 'Manuscript under peer review at an anonymised venue. Identifying details are withheld until review concludes — this entry is deliberately incomplete.||Domain, method and system name: [[EXPUNGED]]||What can be stated: a [[26]] runs end to end as a live discrete-event simulation, streaming every tick to a browser dashboard where [[31]] can be injected into the running system and watched as they propagate through it.',
+      architecture: 'Stack: [[16]] · [[11]] · [[14]] — withheld pending review||Three languages share a single computational contract, cross-checked against a frozen golden fixture. The core numerical engine is validated against an independent reference implementation to within 1e-6.||Method and solver layer: [[EXPUNGED]]||The same pipeline runs at three scales; the cross-layer result holds at the largest one.',
+      contribution: 'Lead author, and sole engineer on the systems side.||Built the simulation, the live streaming layer, the fault-injection controls, the validation harness and the reproducibility pipeline.||Specific technical contributions: [[EXPUNGED]]',
+      outcome: 'One command reproduces every headline number byte-for-byte on the same commit, stamped with the git commit that produced it.||Quantitative results: [[EXPUNGED]]||Released as a reusable benchmark — documented data contracts, a bring-your-own-solver API and a frozen frame schema. This dossier unseals on publication.',
+      stat: 'SEALED', statLabel: 'pending peer review',
+      stat2: 'Byte-exact', stat2Label: 'reproducible on commit',
+    },
+  },
+  {
+    id: 'FILE-005', active: true, cat: 'sys',
+    ariaLabel: 'GREENWAVE: Adaptive traffic signal optimization for lane-free heterogeneous traffic. Press Enter to view details.',
+    codename: 'GREENWAVE', domain: 'Algorithms · RL', metric: 'Lane-free TSC',
+    dossier: {
+      clearance: 'ACTIVE RESEARCH', name: 'Adaptive Traffic Signal Optimization',
+      badge: 'Active — Present | Algorithms · Reinforcement Learning',
+      role: 'Sole Author', status: 'ONGOING', unredacted: true,
+      overview: 'Minimising average vehicle waiting time at signalised intersections from real-time vehicle density. Two deliberately separated tracks: textbook baselines that everything else must beat, and a research track aimed at a paper.||Track A is complete — five classic controllers (fixed-time, greedy, shortest-wait, dynamic programming, graph) in portable C11/C++17 with no external dependencies, each with full complexity analysis.||Track B is scaffolded and deliberately unbuilt. Its observation, action and reward spaces are designed around the novel contribution, so it stays gated until that contribution is settled rather than bolted on afterward.',
+      architecture: 'Stack: C11/C++17 baselines + Python microsimulation and Gym-style RL environment||Selected contribution: a β-family signal policy that recovers longest-queue-first and max-pressure as special cases, with learned online β adaptation and a constructive per-movement worst-case-delay guarantee.||Evaluated on a lane-free heterogeneous simulation — mixed vehicle classes without lane discipline — rather than the lane-based networks the literature assumes.||Deterministic given a seed. Track A verified under both MSVC and gcc.',
+      contribution: 'Sole author. Built all five baselines and their complexity analysis, ran the prior-art survey, and selected the contribution the research track is designed around.||Ran that survey under a verification discipline carried over from this project\'s own earlier attempt: every source tagged [V] when title, venue and year were confirmed on the publisher page, or [U] when seen only in search snippets. No [U] claim reaches the paper without checking the primary source, and unreachable papers are listed for retrieval rather than cited on faith.',
+      outcome: 'The gap is documented rather than assumed. A 2025 paper states plainly that accurate vehicle-specific delay information is infeasible to obtain under the heterogeneous, lane-less conditions found in countries like India — then sidesteps it, using scalar queue length on homogeneous traffic. A 2024/25 review of the field does not treat lane-less traffic as a focus at all.||Track A builds and passes smoke tests on both toolchains. Track B implementation follows the selected angle.',
+      stat: 'β-family', statLabel: 'LQF ↔ max-pressure, unified',
+      stat2: '5 baselines', stat2Label: 'C11, zero dependencies',
+    },
+  },
+  {
+    id: 'FILE-006', active: true, cat: 'sys',
+    ariaLabel: 'DEVANAGARI: Bilingual Hindi news summarizer and purpose-built Hindi corpus. Press Enter to view details.',
+    codename: 'DEVANAGARI', domain: 'NLP · Data', metric: 'ROUGE-L 47.4',
+    dossier: {
+      clearance: 'ACTIVE RESEARCH', name: 'Bilingual Hindi News Summarizer',
+      badge: 'Active — Present | Natural Language Processing · Dataset Engineering',
+      role: 'Lead Developer', status: 'ONGOING', unredacted: true,
+      overview: 'Extractive Hindi news summarisation with dual-language output — and, the larger half of the work, a Hindi news corpus built from scratch to train it.||Pipeline: Hindi article → TextRank extractive summary → opus-mt-hi-en → English summary, scored with ROUGE and BLEU against XL-Sum Hindi gold summaries.||Phase 2 replaces the borrowed dataset with one collected, cleaned, quality-gated, split, annotated and documented in-house.',
+      architecture: 'Stack: Stanza (HDTB Hindi models) + trafilatura + transformers + PyTorch||Collection runs two ways: a robots-aware RSS forward-fill across verified Hindi outlets, and a threaded sitemap backfill that reaches the past year — which RSS structurally cannot, since a feed exposes only its most recent items.||Four stages sit between scrape and dataset: HTML and page-chrome cleaning, dedupe by URL and by opening-prose hash, a quality gate that counts every drop by reason, and splits assigned by sha1(id) % 10000 so a record keeps its split when the corpus grows — no leakage across runs.||Annotation: normalisation → tokenisation → sentence segmentation → lemmatisation → POS tagging → dependency parse → NER. Resumable in slices, since it is the slowest stage.',
+      contribution: 'Built the collection, cleaning, annotation and validation pipeline end to end, and the summarisation and evaluation stack above it.||Wrote a Unicode-aware tokeniser for Devanagari so ROUGE and BLEU score Hindi correctly rather than silently mis-segmenting it.||Ran a stratified 100-record audit of gold-summary quality and measured target quality per outlet, so the corpus can be selected on rather than trusted wholesale.',
+      outcome: 'mt5-small leads at ROUGE-1 51.63 / ROUGE-L 47.42 / BLEU 30.43 over 403 records, ahead of a lead-3 baseline at 49.46 and IndicBART at 50.12. TextRank trails at 35.31 — the honest ceiling of extractive scoring here.||The audit is the more useful result: 42% of gold summaries are genuinely abstractive, 39% are copied ledes, and the split varies sharply by outlet. Every record carries a summary_is_prefix flag so training can select on it instead of inheriting the noise.||Collection is rate-limited, robots-aware and documented in a datasheet. Outlets that answered 403 to a declared research bot are excluded rather than circumvented by spoofing a browser user-agent, and every dropped URL is recorded so it is not re-added blindly.',
+      stat: '47.4', statLabel: 'ROUGE-L, mt5-small',
+      stat2: '42% / 39%', stat2Label: 'abstractive vs copied ledes',
+    },
+  },
+  {
+    id: 'FILE-007', cat: 'sys',
+    ariaLabel: 'VIPER-1: Unity arcade jet combat game generated entirely from code, zero art assets. Press Enter to view details.',
+    codename: 'VIPER-1', domain: 'Games · Systems', metric: '0 art assets',
+    dossier: {
+      clearance: 'DECLASSIFIED', name: 'VIPER-1',
+      badge: 'Games · Procedural Systems', role: 'Sole Designer & Engineer', status: 'COMPLETE', unredacted: true,
+      overview: 'Unity 6 arcade naval-jet campaign in which the world assembles itself from code at play time. Every level, texture, sound and effect is generated at runtime from a single mission ScriptableObject.||There are no prefabs to wire, no audio files and no image assets in the project. The only non-C# assets are two hand-written URP shaders — the afterburner plume and its heat haze.||Eight-mission campaign: flight school through carrier ops, night strikes and a final assault, against enemies that shoot back.',
+      architecture: 'Stack: Unity 6 (URP) + C# — 231 scripts, no art pipeline||A mission is pure data: start and landing base, a target list of type/position/priority/patrol radius, loadout, rules and sky mood. Ground targets generate their own island, and nearby targets share one.||Procedural throughout — audio synthesised at runtime, textures generated in code, terrain and airbases built by mesh factories.||Threat model: gun turrets that track and lead the jet, SAM sites that build a lock and must be broken with flares and G, warships that shell the carrier, and fighters that patrol, engage, and evade once locked.',
+      contribution: 'Sole designer and engineer. Built the flight model, runtime world generation, enemy AI, the weapon and radar-lock systems, procedural audio and VFX, the flight HUD and cockpit view, scoring and progression, options and touch controls.||Designed the data-driven mission format so a new mission is authored without writing any code.',
+      outcome: 'Playable eight-mission campaign with 3-star scoring, unlockable progression and saved state. Adding a mission needs only a ScriptableObject and a database entry.||The constraint was the point: shipping a full game with no art assets forced every visual and audio decision into code, where it could be parameterised, reused and regenerated.',
+      stat: '0', statLabel: 'art assets in project',
+      stat2: '231', stat2Label: 'C# scripts',
+    },
+  },
+  {
+    id: 'FILE-008', cat: 'security',
     ariaLabel: 'NotBigBrother: Privacy-preserving age verification. Press Enter to view details.',
     codename: 'NotBigBrother', domain: 'Privacy · Crypto', metric: 'Zero PII',
     dossier: {
@@ -70,7 +149,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-004', cat: 'security',
+    id: 'FILE-009', cat: 'security',
     ariaLabel: 'ARCHON — Anonymous distributed messaging system. Press Enter to view details.',
     codename: 'ARCHON', domain: 'Privacy', metric: 'AES-256',
     dossier: {
@@ -86,7 +165,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-005', cat: 'access',
+    id: 'FILE-010', cat: 'access',
     ariaLabel: 'VisionAid - YOLOv8x + Depth Anything V2 indoor navigation for visually impaired users. Press Enter to view details.',
     codename: 'VisionAid', domain: 'Accessibility · CV', metric: '16 FPS GPU',
     dossier: {
@@ -102,7 +181,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-006', cat: 'access',
+    id: 'FILE-011', cat: 'access',
     ariaLabel: 'ASL Transcription System: Real-time sign language recognition. Press Enter to view details.',
     codename: 'ASL Transcription', domain: 'Accessibility · CV', metric: '96% mAP',
     dossier: {
@@ -117,7 +196,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-007', cat: 'hack',
+    id: 'FILE-012', cat: 'hack',
     ariaLabel: 'Plant Disease and Pest Detection: YOLOv8-seg and YOLO11n with TabNet fusion. Press Enter to view details.',
     codename: 'Plant Disease Detection', domain: 'Hackathon · CV', metric: '99.97%',
     dossier: {
@@ -133,7 +212,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-008', cat: 'hack',
+    id: 'FILE-013', cat: 'hack',
     ariaLabel: 'Uni P2P Rental Marketplace: React + Supabase rental platform, awarded Best UI/UX. Press Enter to view details.',
     codename: 'P2P Rental Marketplace', domain: 'Hackathon', metric: 'Best UI/UX',
     dossier: {
@@ -149,7 +228,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-009', cat: 'sys',
+    id: 'FILE-014', cat: 'sys',
     ariaLabel: 'Tic-Tac-Toe Minimax AI: Unbeatable AI via plain Minimax. Press Enter to view details.',
     codename: 'Minimax AI', domain: 'AI · Web', metric: '255K nodes',
     dossier: {
@@ -165,7 +244,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-010', cat: 'sys',
+    id: 'FILE-015', cat: 'sys',
     ariaLabel: 'Ashram Management Portal: PHP/MySQL portal with room bookings, course enrollment, and staff dashboard. Press Enter to view details.',
     codename: 'Ashram Management', domain: 'Web', metric: '3 Roles',
     dossier: {
@@ -181,7 +260,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-011', cat: 'hack',
+    id: 'FILE-016', cat: 'hack',
     ariaLabel: 'GapEdit: C terminal gap-buffer editor. Press Enter to view details.',
     codename: 'GapEdit', domain: 'Codeathon · C', metric: '8 hrs build',
     dossier: {
@@ -196,7 +275,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-012', cat: 'hack',
+    id: 'FILE-017', cat: 'hack',
     ariaLabel: 'SWITCHBOARD: Networking hackathon: Cisco Packet Tracer topology and concurrent Java socket server. Press Enter to view details.',
     codename: 'SWITCHBOARD', domain: 'Hackathon', metric: 'Top 3',
     dossier: {
@@ -212,7 +291,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-013', cat: 'sys',
+    id: 'FILE-018', cat: 'sys',
     ariaLabel: 'Linux Tutorial Blog: AI-assisted technical blog on Linux fundamentals. Press Enter to view details.',
     codename: 'Linux Tutorial Blog', domain: 'Technical Writing', metric: 'Published',
     dossier: {
@@ -228,7 +307,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-014', cat: 'sys', earlier: true,
+    id: 'FILE-019', cat: 'sys', earlier: true,
     ariaLabel: 'Python Practice Launcher: Tkinter app with 29 exercises. Press Enter to view details.',
     codename: 'Python Practice Launcher', domain: 'High School', metric: '29 exercises',
     dossier: {
@@ -243,7 +322,7 @@ const PROJECTS = [
     },
   },
   {
-    id: 'FILE-015', cat: 'sys', earlier: true,
+    id: 'FILE-020', cat: 'sys', earlier: true,
     ariaLabel: 'Faculty Substitution Manager: Django web app automating sub assignment. Press Enter to view details.',
     codename: 'Faculty Substitution Manager', domain: 'High School', metric: 'Deployed',
     dossier: {
@@ -316,7 +395,7 @@ function renderManifest() {
   });
 }
 
-renderManifest();
-
-// Boot sequence: flag body so hero elements stay hidden until sequence reveals them
-if (!prefersReducedMotion) document.body.setAttribute('data-boot', 'running');
+if (document.getElementById('manifest-list')) {
+  renderManifest();
+  if (!prefersReducedMotion) document.body.setAttribute('data-boot', 'running');
+}

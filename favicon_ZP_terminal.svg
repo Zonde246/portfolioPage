@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <rect width="16" height="16" rx="2" fill="#0c0c10"/>
+  <!-- Z as filled polygon: top bar, diagonal, bottom bar -->
+  <polygon points="2,2 14,2 14,4 6.5,12 14,12 14,14 2,14 2,12 9.5,4 2,4" fill="#f0f0f0"/>
+</svg>

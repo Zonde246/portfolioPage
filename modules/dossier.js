@@ -1,5 +1,5 @@
 /* ─── DOSSIER SYSTEM ─── */
-import { prefersReducedMotion, escHtml } from './utils.js';
+import { prefersReducedMotion, escHtml, applyRedaction } from './utils.js';
 import { observeCountUps } from './count-up.js';
 
 const overlay = document.getElementById('dossier-overlay');
@@ -28,15 +28,15 @@ let currentCard = null;
 
 function setDossierField(el, text) {
   const parts = text.split('||').map(s => s.trim()).filter(Boolean);
-  if (parts.length <= 1) { el.textContent = text; return; }
+  if (parts.length <= 1) { el.innerHTML = applyRedaction(escHtml(text)); return; }
   el.innerHTML = parts.map((p, i) => {
     const colonIdx = p.indexOf(':');
     if (i === 0 && colonIdx > 0 && colonIdx < 20) {
       const label = escHtml(p.slice(0, colonIdx + 1));
-      const rest = escHtml(p.slice(colonIdx + 1).trim());
+      const rest = applyRedaction(escHtml(p.slice(colonIdx + 1).trim()));
       return `<span class="df-label">${label}</span> ${rest}`;
     }
-    return `<span class="df-bullet">${escHtml(p)}</span>`;
+    return `<span class="df-bullet">${applyRedaction(escHtml(p))}</span>`;
   }).join('');
 }
 

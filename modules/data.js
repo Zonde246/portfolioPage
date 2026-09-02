@@ -37,10 +37,10 @@ export const PROJECTS = [
   },
   {
     id: 'FILE-002', active: true, cat: 'sys',
-    ariaLabel: 'Quire: Free offline open-source PDF toolkit, alpha released. Press Enter to view details.',
-    codename: 'Quire', domain: 'Systems · Tools', metric: 'Alpha Released',
+    ariaLabel: 'Qyra: Free offline open-source PDF toolkit, alpha released. Press Enter to view details.',
+    codename: 'Qyra', domain: 'Systems · Tools', metric: 'Alpha Released',
     dossier: {
-      clearance: 'ACTIVE RESEARCH', name: 'Quire',
+      clearance: 'ACTIVE RESEARCH', name: 'Qyra',
       badge: 'Active — Present | Systems · Developer Tools',
       role: 'Sole Developer', status: 'ONGOING', unredacted: true,
       overview: 'Free, offline, open-source PDF Swiss Army Knife — desktop-native, no cloud, no subscriptions.||Alpha shipped for Windows (.msi/.exe) and Linux (.deb/.rpm/.AppImage). Linux AppImage pre-patched for Wayland/Hyprland with DMA-buf renderer disabled — zero env-var workarounds required.||Built with Tauri v2 + React 19 + TypeScript: Rust backend for PDF operations, React frontend for drag-and-drop document management.',
@@ -49,7 +49,7 @@ export const PROJECTS = [
       outcome: 'Alpha release live on GitHub with Windows and Linux binaries. Wayland compatibility solved without user-side workarounds — AppImage self-patches the DMA-buf renderer at runtime.',
       stat: 'Alpha', statLabel: 'shipped — open source',
       stat2: 'Win + Linux', stat2Label: 'native binaries',
-      github: 'https://github.com/zParik/Quire',
+      github: 'https://github.com/zParik/Qyra',
     },
   },
   {

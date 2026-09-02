@@ -20,13 +20,13 @@ export const PROJECTS = [
     },
   },
   {
-    id: 'FILE-001', active: true, cat: 'security',
-    ariaLabel: 'PaleGuard: Vision-based EDR, active research. Press Enter to view details.',
+    id: 'FILE-001', cat: 'security',
+    ariaLabel: 'PaleGuard: Vision-based EDR, paper accepted at Scientific Reports. Press Enter to view details.',
     codename: 'PaleGuard', domain: 'CyberSec · CV', metric: '88% detection',
     dossier: {
-      clearance: 'ACTIVE RESEARCH', name: 'PaleGuard',
-      badge: 'Active — Present | CyberSecurity — Computer Vision',
-      role: 'Sole Architect & Researcher', status: 'ONGOING', unredacted: true,
+      clearance: 'DECLASSIFIED', name: 'PaleGuard',
+      badge: 'CyberSecurity · Computer Vision',
+      role: 'Sole Architect & Researcher', status: 'COMPLETE', unredacted: true,
       overview: 'Proactive malware detection: PE binaries mapped into 6-channel 3D volumetric tensors, classified by a 3D ResNet-18.||Trained on ~58,000 samples (VirusShare + clean Windows PEs). Paper accepted at Scientific Reports, pending publication.||Inference: 3.3ms per sample.',
       architecture: 'Stack: 3D ResNet-18 + SE attention + Morton Z-order encoding||6 PE sections (.text, .code, .rdata, .idata, .data, .edata) mapped into a 64³ voxel grid via Morton Z-curve for locality preservation.||Each voxel: 6 channels — raw byte value, local entropy, code mask, import density, string density, data-presence mask.||Masked global average pooling + SE attention resolves density shortcut-learning.',
       contribution: 'Conceived the research hypothesis and designed the Morton-curve volumetric encoding scheme.||Identified and resolved density shortcut-learning via masking + SE attention — the key technical insight.||Ran all experiments and drafted the manuscript.',

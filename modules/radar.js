@@ -41,7 +41,7 @@ if (canvas) {
 
     const PROJECTS = [
       { id: 'FILE-000', name: 'FIELDSTATION ZERO', metric: '0 deps', domain: 'Design · Systems', cat: 'sys', active: true, r: 0.16, angle: -2.42 },
-      { id: 'FILE-001', name: 'PaleGuard', metric: '88%', domain: 'CyberSec · CV', cat: 'security', active: true, r: 0.28, angle: -1.35 },
+      { id: 'FILE-001', name: 'PaleGuard', metric: '88%', domain: 'CyberSec · CV', cat: 'security', active: false, r: 0.28, angle: -1.35 },
       { id: 'FILE-002', name: 'Qyra', metric: 'Alpha', domain: 'Systems · Tools', cat: 'sys', active: true, r: 0.22, angle: -1.90 },
       { id: 'FILE-003', name: 'ZonFormer', metric: '+33.6%', domain: 'Deep RL · Systems', cat: 'sys', active: true, r: 0.30, angle: 1.05 },
       { id: 'FILE-004', name: 'EMBARGO', metric: 'SEALED', domain: 'Systems Research', cat: 'sys', active: true, r: 0.24, angle: 0.06 },

@@ -11,7 +11,7 @@ const CAT_COLOR = {
 const MAP_PROJECTS = [
   { id: 'FILE-000', name: 'FIELDSTATION ZERO', cat: 'sys',      metric: '0 deps',      lon:  79.16, lat:  12.97, active: true,  geo: 'Vellore, India' },
   { id: 'FILE-001', name: 'PaleGuard',          cat: 'security', metric: '88% detect',  lon: -77.44, lat:  39.05, active: true,  geo: 'Virginia, USA' },
-  { id: 'FILE-002', name: 'Quire',              cat: 'sys',      metric: 'Alpha',        lon:  13.40, lat:  52.52, active: true,  geo: 'Berlin, Germany' },
+  { id: 'FILE-002', name: 'Qyra',              cat: 'sys',      metric: 'Alpha',        lon:  13.40, lat:  52.52, active: true,  geo: 'Berlin, Germany' },
   { id: 'FILE-003', name: 'ZonFormer',          cat: 'sys',      metric: '+33.6%',      lon:  35.21, lat:  31.77, active: true,  geo: 'Jerusalem, Israel' },
   { id: 'FILE-004', name: 'EMBARGO',            cat: 'sys',      metric: 'SEALED',      lon: -30.00, lat:  40.00, active: true,  geo: 'LOCATION WITHHELD' },
   { id: 'FILE-005', name: 'GREENWAVE',          cat: 'sys',      metric: 'Lane-free',   lon:  80.27, lat:  13.08, active: true,  geo: 'Chennai, India' },
